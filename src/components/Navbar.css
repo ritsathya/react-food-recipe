@@ -1,0 +1,8 @@
+.navbar {
+    background-color: var(--primaryColor);
+    min-height: 70px;
+}
+
+.navbar-logo img {
+    width: 180px;
+}
