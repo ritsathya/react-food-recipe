@@ -1,29 +1,35 @@
+@import url('https://fonts.googleapis.com/css2?family=Baloo+Tamma+2:wght@400;700&display=swap');
+
 :root {
     --primaryColor: #B3E099;
+    --secondaryColor: #D14334;
+    --lightColor: #F6F7F6;
+    --darkColor: #343A40;
 }
 
 body {
     margin: 0;
     padding: 0;
+    font-family: 'Baloo Tamma 2', cursive;
 }
 
-.d-flex {
+.flex {
     display: flex;
 }
 
-.justify-content-between {
+.jc-between {
     -webkit-box-pack: justify;
         -ms-flex-pack: justify;
             justify-content: space-between;
 }
 
-.justify-content-center {
+.jc-center {
     -webkit-box-pack: center;
         -ms-flex-pack: center;
             justify-content: center;
 }
 
-.align-items-center {
+.ai-center {
     -webkit-box-align: center;
         -ms-flex-align: center;
             align-items: center;
