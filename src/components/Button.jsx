@@ -1,14 +1,15 @@
-import React from 'react'
+import React from 'react';
+import { Link } from 'react-router-dom';
 
 
 const Button = ({ className, label, icon }) => {
     return (
-        <a className={`btn ${className}`} href='#'>
+        <Link className={`btn ${className}`} to='#'>
             <span>
                 {icon}
             </span>
             {" "+label}
-        </a>
+        </Link>
     )
 }
 

@@ -7,7 +7,7 @@ const SearchForm = () => {
                 <h2>Find a recipe</h2>
                 <div className="input-group container">
                     <input className="form-control fe-shadow" type="text" placeholder="find a recipe" />
-                    <button className="btn btn-search" type="submit">
+                    <button className="btn btn-search" type="submit" title='searchBtn'>
                         <i className="fas fa-search"></i>
                     </button>
                 </div>

@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import FoodCard from './FoodCard'
 
 const BreakfastSection = () => {
@@ -8,7 +9,9 @@ const BreakfastSection = () => {
                 <span className='heading-icon'>
                     <i className="fas fa-bacon"></i>
                 </span>
-                <h2 className="heading-text">Breakfast</h2>
+                <Link to='/Breakfast'>
+                    <h2 className="heading-text">Breakfast</h2>
+                </Link>
             </div>
             <div className="fe-container flex jc-center ai-center">
                 <FoodCard imgSrc="bread.jpg" text="Bread" timer={10}/>

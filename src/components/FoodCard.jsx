@@ -1,6 +1,8 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 const FoodCard = ({ imgSrc, text, timer }) => {
+    const [star, setStar] = useState(false);
+
     return (
         <div className='fe-card'>
             <img className="fe-card-img" src={`${process.env.PUBLIC_URL}/images/${imgSrc}`} alt="food-img" />
@@ -13,11 +15,11 @@ const FoodCard = ({ imgSrc, text, timer }) => {
                         <span>{timer}mins</span>
                     </div>
                     <div className="rate">
-                        <i className="far fa-star"></i>
-                        <i className="far fa-star"></i>
-                        <i className="far fa-star"></i>
-                        <i className="far fa-star"></i>
-                        <i className="far fa-star"></i>
+                        <i className={`${star? 'fas':'far'} fa-star`} onClick={() => setStar(!star)}></i>
+                        <i className={`${star? 'fas':'far'} fa-star`} onClick={() => setStar(!star)}></i>
+                        <i className={`${star? 'fas':'far'} fa-star`} onClick={() => setStar(!star)}></i>
+                        <i className={`${star? 'fas':'far'} fa-star`} onClick={() => setStar(!star)}></i>
+                        <i className={`${star? 'fas':'far'} fa-star`} onClick={() => setStar(!star)}></i>
                     </div>
                 </div>
             </div>

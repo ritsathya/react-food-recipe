@@ -131,3 +131,7 @@
 .fe-timer > :first-child {
   margin-right: 7px;
 }
+
+.fa-star:hover{
+  background-color: lightcoral;
+}

@@ -1,4 +1,6 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
+
 import './Navbar.css'
 import Button from './Button';
 
@@ -8,9 +10,9 @@ const Navbar = () => {
         <>
             <nav className="navbar navbar-expand-lg navbar-light">
                 <div className="container container-fluid">
-                    <a className="navbar-brand" href="#">
-                    <img  id="logo" src={`${process.env.PUBLIC_URL}/images/logo.png`} alt="Logo" />
-                    </a>
+                    <Link className='navbar-brand' to='/'>
+                        <img  id="logo" src={`${process.env.PUBLIC_URL}/images/logo.png`} alt="Logo" />
+                    </Link>
                     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                         <span className="navbar-toggler-icon"></span>
                     </button>
