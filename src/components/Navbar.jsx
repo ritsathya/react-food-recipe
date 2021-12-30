@@ -1,8 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-import Button from "./Button";
-
 const Navbar = () => {
   return (
     <>
@@ -31,22 +29,17 @@ const Navbar = () => {
             id="navbarNavAltMarkup"
           >
             <div className="navbar-nav gap-3">
-              <Button
-                className="btn-edit"
-                label=""
-                icon={<i className="fas fa-tasks"></i>}
-              />
-              <Button
-                className="btn-post"
-                label=""
-                icon={<i className="fas fa-edit"></i>}
-              />
+              <Link className="btn btn-edit" to="/shoppingList">
+                <i className="fas fa-tasks" />
+              </Link>
+              <Link className="btn btn-post" to="/post">
+                <i className="fas fa-edit" />
+              </Link>
               <div className="separator"></div>
-              <Button
-                className="btn-login"
-                label="Login"
-                icon={<i className="fas fa-sign-in-alt"></i>}
-              />
+              <Link className="btn btn-login" to="/login">
+                <i className="fas fa-sign-in-alt" />
+                Login
+              </Link>
             </div>
           </div>
         </div>

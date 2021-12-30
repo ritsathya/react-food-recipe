@@ -91,6 +91,10 @@
   font-weight: bold;
 }
 
+.btn-login > i {
+  margin-right: 0.3125rem;
+}
+
 .fe-container {
   flex-wrap: wrap;
 }
