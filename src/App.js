@@ -1,16 +1,16 @@
 import "./App.css";
-import { BrowserRouter as Router } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Navbar from "./components/Navbar";
-import SearchForm from "./components/SearchForm";
-import BreakfastSection from "./components/BreakfastSection";
+import Home from "./components/pages/Home";
 
 function App() {
   return (
     <>
       <Router>
         <Navbar />
-        <SearchForm />
-        <BreakfastSection />
+        <Routes>
+          <Route path="/" exact element={<Home />} />
+        </Routes>
       </Router>
     </>
   );

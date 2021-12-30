@@ -3,6 +3,21 @@
   min-height: 600px;
 }
 
+.navbar {
+  background-color: var(--primaryColor);
+}
+
+#logo {
+  width: 200px;
+}
+
+.separator {
+  background-color: #343a40;
+  width: 0.1875rem;
+  margin-top: 0.3125rem;
+  border-radius: 0.625rem;
+}
+
 .heading-icon,
 .heading-text {
   margin-top: 40px;
