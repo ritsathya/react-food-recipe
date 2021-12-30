@@ -1,36 +1,36 @@
-@import url('https://fonts.googleapis.com/css2?family=Baloo+Tamma+2:wght@400;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Baloo+Tamma+2:wght@400;700&display=swap");
 
 :root {
-    --primaryColor: #B3E099;
-    --secondaryColor: #D14334;
-    --lightColor: #F6F7F6;
-    --darkColor: #343A40;
+  --primaryColor: #b3e099;
+  --secondaryColor: #d14334;
+  --lightColor: #f6f7f6;
+  --darkColor: #343a40;
 }
 
 body {
-    margin: 0;
-    padding: 0;
-    font-family: 'Baloo Tamma 2', cursive;
+  margin: 0;
+  padding: 0;
+  font-family: "Baloo Tamma 2", cursive;
 }
 
 .flex {
-    display: flex;
+  display: flex;
 }
 
 .jc-between {
-    -webkit-box-pack: justify;
-        -ms-flex-pack: justify;
-            justify-content: space-between;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
 }
 
 .jc-center {
-    -webkit-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
 }
 
 .ai-center {
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
 }
