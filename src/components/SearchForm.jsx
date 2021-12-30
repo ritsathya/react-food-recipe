@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const SearchForm = () => {
   return (
@@ -15,12 +16,12 @@ const SearchForm = () => {
             <i className="fas fa-search"></i>
           </button>
         </div>
-        <a
+        <Link
           className="btn btn-edit text-dark mt-5 position-absolute top-100 start-50 translate-middle"
-          href="#"
+          to="/"
         >
           <small>Advanced Search</small>
-        </a>
+        </Link>
       </div>
     </div>
   );
