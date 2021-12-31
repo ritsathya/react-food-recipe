@@ -5,6 +5,9 @@
   --secondaryColor: #d14334;
   --lightColor: #f6f7f6;
   --darkColor: #343a40;
+  --btnEdit: #d9f0cb;
+  --btnPost: #ffeaad;
+  --btnLogin: #febd2f;
 }
 
 body {

@@ -1,47 +1,49 @@
-import React, { useState } from "react";
+import React from "react";
+import CardItem from "./CardItem";
 
-const FoodCard = ({ imgSrc, text, timer }) => {
-  const [star, setStar] = useState(false);
-
+const FoodCard = (props) => {
   return (
-    <div className="fe-card">
-      <img
-        className="fe-card-img"
-        src={`${process.env.PUBLIC_URL}/images/${imgSrc}`}
-        alt="food-img"
-      />
-      <div className="fe-content">
-        <div className="fe-tag">breakfast</div>
-        <div className="fe-card-title">
-          {text.length < 25 ? text : text.slice(0, 25) + "..."}
-        </div>
-        <div className="fe-card-detail flex jc-between">
-          <div className="fe-timer">
-            <i className="fas fa-stopwatch"></i>
-            <span>{timer}mins</span>
-          </div>
-          <div className="rate">
-            <i
-              className={`${star ? "fas" : "far"} fa-star`}
-              onClick={() => setStar(!star)}
+    <div className="cards">
+      <h2>
+        {props.icon}
+        {props.label}
+      </h2>
+      <div className="cards__container">
+        <div className="cards__wrapper">
+          <ul className="cards__items">
+            <CardItem
+              src="images/bread.jpg"
+              text="Yummy Bread"
+              label={props.label}
+              path="/services"
             />
-            <i
-              className={`${star ? "fas" : "far"} fa-star`}
-              onClick={() => setStar(!star)}
+            <CardItem
+              src="images/cereal.jpg"
+              text="Cereal"
+              label={props.label}
+              path="/services"
             />
-            <i
-              className={`${star ? "fas" : "far"} fa-star`}
-              onClick={() => setStar(!star)}
+          </ul>
+          <ul className="cards__items">
+            <CardItem
+              src="images/egg-toast.jpg"
+              text="Egg Toast"
+              label={props.label}
+              path="/services"
             />
-            <i
-              className={`${star ? "fas" : "far"} fa-star`}
-              onClick={() => setStar(!star)}
+            <CardItem
+              src="images/french-toast.jpg"
+              text="French Toast"
+              label={props.label}
+              path="/services"
             />
-            <i
-              className={`${star ? "fas" : "far"} fa-star`}
-              onClick={() => setStar(!star)}
+            <CardItem
+              src="images/strawberry-pancakes.jpg"
+              text="Strawberry Pancakes"
+              label={props.label}
+              path="/services"
             />
-          </div>
+          </ul>
         </div>
       </div>
     </div>

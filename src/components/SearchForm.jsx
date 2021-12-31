@@ -12,7 +12,7 @@ const SearchForm = () => {
             type="text"
             placeholder="find a recipe"
           />
-          <button className="btn btn-search" type="submit" title="searchBtn">
+          <button className="btn btn-search" type="submit">
             <i className="fas fa-search"></i>
           </button>
         </div>
