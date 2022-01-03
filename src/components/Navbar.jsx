@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const Navbar = () => {
+const Navbar = (props) => {
   return (
     <>
       <nav className="navbar navbar-expand-lg navbar-light">
@@ -29,10 +29,16 @@ const Navbar = () => {
             id="navbarNavAltMarkup"
           >
             <div className="navbar-nav gap-3">
-              <Link className="btn btn-edit" to="/shoppingList">
+              <Link
+                className={props.path !== "/" ? "d-none" : "btn btn-edit"}
+                to="/shoppingList"
+              >
                 <i className="fas fa-tasks" />
               </Link>
-              <Link className="btn btn-post" to="/post">
+              <Link
+                className={props.path !== "/" ? "d-none" : "btn btn-post"}
+                to="/post"
+              >
                 <i className="fas fa-edit" />
               </Link>
               <div className="separator"></div>
