@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const SearchForm = () => {
   return (
-    <div className="hero flex jc-center ai-center">
+    <div id="hero-section" className="hero flex jc-center ai-center">
       <div className="hero__search position-relative">
         <h2>Find a recipe</h2>
         <div className="input-group container">
