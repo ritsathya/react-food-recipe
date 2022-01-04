@@ -12,6 +12,19 @@ const CardItem = (props) => {
           <div className="cards__item__info">
             <h5 className="cards__item__text">{props.text}</h5>
           </div>
+          <div className="cards__item__icon">
+            <div>
+              <i className="fa-solid fa-stopwatch" />
+              <span> 10 mins</span>
+            </div>
+            <div className="rating">
+              <i className="fa-regular fa-star" />
+              <i className="fa-regular fa-star" />
+              <i className="fa-regular fa-star" />
+              <i className="fa-regular fa-star" />
+              <i className="fa-regular fa-star" />
+            </div>
+          </div>
         </Link>
       </li>
     </>

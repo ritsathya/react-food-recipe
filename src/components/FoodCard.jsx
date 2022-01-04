@@ -23,11 +23,23 @@ const FoodCard = (props) => {
               label={props.label}
               path="/services"
             />
+            <CardItem
+              src="images/cereal.jpg"
+              text="Cereal"
+              label={props.label}
+              path="/services"
+            />
           </ul>
           <ul className="cards__items">
             <CardItem
               src="images/egg-toast.jpg"
               text="Egg Toast"
+              label={props.label}
+              path="/services"
+            />
+            <CardItem
+              src="images/french-toast.jpg"
+              text="French Toast"
               label={props.label}
               path="/services"
             />

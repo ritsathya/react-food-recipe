@@ -1,6 +1,7 @@
 import React from "react";
 import SearchForm from "../SearchForm";
 import FoodCard from "../FoodCard";
+import Footer from "../Footer";
 
 const Home = () => {
   return (
@@ -15,6 +16,7 @@ const Home = () => {
         icon={<i className="fa-solid fa-champagne-glasses" />}
         label="DINNER"
       />
+      <Footer />
     </>
   );
 };
