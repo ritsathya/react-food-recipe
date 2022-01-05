@@ -2,7 +2,7 @@ import React from "react";
 
 const Footer = () => {
   return (
-    <div className="footer-container flex jc-center ai-center">
+    <div className="footer-container flex-center">
       <a href="#logo">
         <img
           id="footerLogo"
