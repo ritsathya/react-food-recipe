@@ -356,6 +356,7 @@ h2 > i {
   -webkit-box-shadow: none;
   -moz-box-shadow: none;
 }
+
 .login__form .btn {
   align-self: center;
   background-color: #b3e099;
@@ -368,17 +369,43 @@ h2 > i {
   -webkit-box-shadow: none;
   -moz-box-shadow: none;
 }
+
 .login__form .btn-section {
   align-items: center;
   justify-content: center;
 }
+
 .login__form .line-or-line {
   align-items: center;
   justify-content: center;
 }
+
 .login__form .line {
   background-color: #343a40;
   height: 1px;
+}
+
+.not-found-container {
+  /* height: 53vh; */
+  text-align: center;
+}
+
+.not-found-container > a {
+  /* -top: 50px; */
+  text-decoration: none;
+}
+
+.not-found-container > img {
+  width: 100%;
+  height: 200px;
+  margin-bottom: 50px;
+}
+
+.not-found-icon {
+  color: var(--secondaryColor);
+  font-size: 60px;
+  width: 40px;
+  margin: 10px auto;
 }
 
 @media only screen and (min-width: 1200px) {
