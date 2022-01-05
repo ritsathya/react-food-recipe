@@ -14,7 +14,7 @@ const Navbar = (props) => {
             />
           </Link>
           <button
-            className="navbar-toggler"
+            className={props.path === "/login" ? "d-none" : "navbar-toggler"}
             type="button"
             data-bs-toggle="collapse"
             data-bs-target="#navbarNavAltMarkup"
@@ -25,7 +25,11 @@ const Navbar = (props) => {
             <span className="navbar-toggler-icon"></span>
           </button>
           <div
-            className="collapse navbar-collapse flex-grow-0"
+            className={
+              props.path === "/login"
+                ? "d-none"
+                : "collapse navbar-collapse flex-grow-0"
+            }
             id="navbarNavAltMarkup"
           >
             <div className="navbar-nav gap-3">

@@ -163,68 +163,6 @@ h2 > i {
   justify-content: space-between;
   align-items: center;
 }
-.fe-container {
-  flex-wrap: wrap;
-}
-
-.fe-shadow {
-  border: 2px solid #343a40;
-  box-shadow: 0 0.375rem 0 0 #343a40;
-  -webkit-box-shadow: 0 0.375rem 0 0 #343a40;
-  -moz-box-shadow: 0 0.375rem 0 0 #343a40;
-}
-
-.fe-card {
-  max-width: 14.375rem;
-  height: 21.25rem;
-  background-color: #fff;
-  margin: 1.875rem 0.625rem;
-  padding: 1rem;
-
-  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
-  border-radius: 0.5rem;
-
-  list-style: none;
-}
-
-.fe-card-img {
-  width: 200px;
-  height: 200px;
-  border-radius: 8px;
-  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
-}
-
-.fe-card-img:hover {
-  transition: all 300ms ease-in-out;
-  transform: scale(1.05);
-}
-
-.fe-content {
-  display: flex;
-  flex-direction: column;
-  min-height: 40%;
-}
-
-.fe-tag {
-  color: var(--secondaryColor);
-  margin-top: 4px;
-}
-
-.fe-card-title {
-  font-size: 26px;
-  flex: 1;
-  line-height: 1.02;
-}
-
-.fe-card-detail {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.fe-timer > :first-child {
-  margin-right: 7px;
-}
 
 .btn {
   background-color: var(--lightColor);
@@ -289,29 +227,32 @@ h2 > i {
   font-size: 1.5rem;
 }
 
-.Shopping-list-page {
+.shopping-list-page {
   height: 100vh;
   background-color: #d9f0cb;
 }
 
-.Shopping-List-Contaienr {
+.shopping-list-contaienr {
   border-radius: 0.5rem;
-  background-color: white;
+  background-color: var(--lightColor);
   width: 40%;
   margin-top: 1rem;
+  margin-bottom: 1rem;
 }
 
-.Print-button {
-  background-color: #b3e099;
+.print-button {
+  background-color: var(--primaryColor);
   height: 5rem;
   width: 5rem;
-  color: white;
   border: none;
-  border-radius: 0.5rem;
   box-shadow: 0 0.25rem rgba(0, 0, 0, 0.15);
   margin-top: 3rem;
   margin-left: 2rem;
+  padding: 15px;
+  font-size: 22px;
+  line-height: 1.3;
 }
+
 .form-check-input {
   transform: scale(3);
   margin-right: 2rem;
@@ -370,6 +311,103 @@ h2 > i {
   margin-right: 30px;
 }
 
+.login {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url("../public/images/hero-img.jpg");
+  background-size: cover;
+  min-height: 100vh;
+}
+
+.login__form {
+  color: #343a40;
+  font-weight: bold;
+  background-color: white;
+  border: 3px solid #d9f0cb;
+  border-radius: 10px;
+  width: 28rem;
+}
+
+.login__form h2 {
+  text-align: center;
+  font-size: 68px;
+  font-weight: bold;
+}
+
+.login__form h3 {
+  text-align: center;
+  font-size: 42px;
+  font-weight: bold;
+}
+
+.login__form a {
+  margin-top: 5px;
+  color: var(--primaryColor);
+  text-decoration: none;
+}
+
+.btn-section > span {
+  margin-right: 4px;
+}
+
+.login__form .form-control {
+  border: 1px solid grey;
+  border-radius: 2px;
+  box-shadow: none;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+}
+
+.login__form .btn {
+  align-self: center;
+  background-color: #b3e099;
+  border: none;
+  border-radius: 2px;
+  box-shadow: none;
+  color: #343a40;
+  font-size: 20px;
+  font-weight: bold;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+}
+
+.login__form .btn-section {
+  align-items: center;
+  justify-content: center;
+}
+
+.login__form .line-or-line {
+  align-items: center;
+  justify-content: center;
+}
+
+.login__form .line {
+  background-color: #343a40;
+  height: 1px;
+}
+
+.not-found-container {
+  /* height: 53vh; */
+  text-align: center;
+}
+
+.not-found-container > a {
+  /* -top: 50px; */
+  text-decoration: none;
+}
+
+.not-found-container > img {
+  width: 100%;
+  height: 200px;
+  margin-bottom: 50px;
+}
+
+.not-found-icon {
+  color: var(--secondaryColor);
+  font-size: 60px;
+  width: 40px;
+  margin: 10px auto;
+}
+
 @media only screen and (min-width: 1200px) {
   .content__blog__container {
     width: 84%;
@@ -385,5 +423,19 @@ h2 > i {
 @media only screen and (max-width: 1024px) {
   .cards__item {
     margin-bottom: 2rem;
+  }
+}
+
+@media only screen and (max-width: 800px) {
+  .separator {
+    display: none;
+  }
+
+  .login__form {
+    width: 20rem;
+  }
+
+  .login__form h2 {
+    font-size: 50px;
   }
 }

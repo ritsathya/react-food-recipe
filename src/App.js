@@ -3,6 +3,8 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Home from "./components/pages/Home";
 import ShoppingList from "./components/pages/ShoppingList";
+import Login from "./components/pages/Login";
+import NotFound from "./components/NotFound";
 
 function App() {
   return (
@@ -28,6 +30,16 @@ function App() {
               </>
             }
           />
+          <Route
+            path="/login"
+            element={
+              <>
+                <Navbar path="/login" />
+                <Login />
+              </>
+            }
+          />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </Router>
     </>
