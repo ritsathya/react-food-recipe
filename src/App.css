@@ -370,6 +370,76 @@ h2 > i {
   margin-right: 30px;
 }
 
+.login {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url("../public/images/hero-img.jpg");
+  background-size: cover;
+  min-height: 100vh;
+}
+
+.login__form {
+  color: #343a40;
+  font-weight: bold;
+  background-color: white;
+  border: 3px solid #d9f0cb;
+  border-radius: 10px;
+  width: 28rem;
+}
+
+.login__form h2 {
+  text-align: center;
+  font-size: 68px;
+  font-weight: bold;
+}
+
+.login__form h3 {
+  text-align: center;
+  font-size: 42px;
+  font-weight: bold;
+}
+
+.login__form a {
+  margin-top: 5px;
+  color: var(--primaryColor);
+  text-decoration: none;
+}
+
+.btn-section > span {
+  margin-right: 4px;
+}
+
+.login__form .form-control {
+  border: 1px solid grey;
+  border-radius: 2px;
+  box-shadow: none;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+}
+.login__form .btn {
+  align-self: center;
+  background-color: #b3e099;
+  border: none;
+  border-radius: 2px;
+  box-shadow: none;
+  color: #343a40;
+  font-size: 20px;
+  font-weight: bold;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+}
+.login__form .btn-section {
+  align-items: center;
+  justify-content: center;
+}
+.login__form .line-or-line {
+  align-items: center;
+  justify-content: center;
+}
+.login__form .line {
+  background-color: #343a40;
+  height: 1px;
+}
+
 @media only screen and (min-width: 1200px) {
   .content__blog__container {
     width: 84%;
@@ -385,5 +455,19 @@ h2 > i {
 @media only screen and (max-width: 1024px) {
   .cards__item {
     margin-bottom: 2rem;
+  }
+}
+
+@media only screen and (max-width: 800px) {
+  .separator {
+    display: none;
+  }
+
+  .login__form {
+    width: 20rem;
+  }
+
+  .login__form h2 {
+    font-size: 50px;
   }
 }
