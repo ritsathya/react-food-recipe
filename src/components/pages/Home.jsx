@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import SearchForm from "../SearchForm";
 import FoodCard from "../FoodCard";
 import Footer from "../Footer";
+import Navbar from "../Navbar";
 
 const Home = () => {
   const [recipes, setRecipes] = useState([
@@ -145,6 +146,7 @@ const Home = () => {
 
   return (
     <>
+      <Navbar path="/" />
       <SearchForm />
       <FoodCard
         icon={<i className="fa-solid fa-bacon" />}

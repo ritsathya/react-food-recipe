@@ -1,9 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import Navbar from "../Navbar";
 
 const Login = () => {
   return (
     <>
+      <Navbar path="/login" />
       <div className="login flex-center">
         <div className="login__form">
           <h2 className="mt-4">Welcome!</h2>
