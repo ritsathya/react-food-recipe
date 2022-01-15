@@ -1,4 +1,5 @@
 import React from "react";
+import Navbar from "../Navbar";
 
 const lists = [
   {
@@ -33,31 +34,34 @@ const lists = [
 
 export default function ShoppingList() {
   return (
-    <div className="shopping-list-page flex jc-center">
-      <div className="shopping-list-contaienr py-4">
-        <h2>
-          <b>Shopping List</b>
-        </h2>
-        {lists.map((list) => (
-          <div key={list.id} className="form-check m-5">
-            <input
-              type="checkbox"
-              className="form-check-input rounded-circle"
-              id={`exampleCheck${list.id}`}
-            />
-            <label
-              className="form-check-label"
-              htmlFor={`exampleCheckkey=${list.id}`}
-            >
-              {list.text}
-            </label>
-          </div>
-        ))}
+    <>
+      <Navbar path="/shopping" />
+      <div className="shopping-list-page flex jc-center">
+        <div className="shopping-list-contaienr py-4">
+          <h2>
+            <b>Shopping List</b>
+          </h2>
+          {lists.map((list) => (
+            <div key={list.id} className="form-check m-5">
+              <input
+                type="checkbox"
+                className="form-check-input rounded-circle"
+                id={`exampleCheck${list.id}`}
+              />
+              <label
+                className="form-check-label"
+                htmlFor={`exampleCheckkey=${list.id}`}
+              >
+                {list.text}
+              </label>
+            </div>
+          ))}
+        </div>
+        <button className="btn print-button">
+          <i className="fa-solid fa-print" />
+          <b>Print</b>
+        </button>
       </div>
-      <button className="btn print-button">
-        <i className="fa-solid fa-print" />
-        <b>Print</b>
-      </button>
-    </div>
+    </>
   );
 }
