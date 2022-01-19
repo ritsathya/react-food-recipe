@@ -5,6 +5,7 @@ import Home from "./components/pages/Home";
 import ShoppingList from "./components/pages/ShoppingList";
 import Login from "./components/pages/Login";
 import NotFound from "./components/NotFound";
+import Result from "./components/pages/Result";
 
 function App() {
   const [recipes, setRecipes] = useState(null);
@@ -27,6 +28,10 @@ function App() {
             path="/"
             index
             element={recipes && <Home recipe={recipes} />}
+          />
+          <Route
+            path="/result"
+            element={recipes && <Result data={recipes} />}
           />
           <Route path="/shoppingList" element={<ShoppingList />} />
           <Route path="/login" element={<Login />} />

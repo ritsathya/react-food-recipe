@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import SearchForm from "../SearchForm";
 import FoodCard from "../FoodCard";
 import Footer from "../Footer";
