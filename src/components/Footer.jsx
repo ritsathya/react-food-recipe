@@ -2,7 +2,7 @@ import React from "react";
 
 const Footer = () => {
   return (
-    <div className="footer-container flex-center">
+    <footer className="footer-container flex-center">
       <a href="#logo">
         <img
           id="footerLogo"
@@ -24,7 +24,7 @@ const Footer = () => {
           <i className="fa-brands fa-instagram" />
         </div>
       </div>
-    </div>
+    </footer>
   );
 };
 

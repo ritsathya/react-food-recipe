@@ -41,6 +41,11 @@
   margin-bottom: 0.625rem;
 }
 
+.wrapper {
+  width: 40%;
+  margin: 0 auto;
+}
+
 .cards {
   padding-top: 1rem;
   padding-bottom: 0;
@@ -180,6 +185,12 @@ h2 > i {
   transform: translateY(4px);
 }
 
+.btn:focus {
+  box-shadow: 0 6px 0 0 #343a40;
+  -webkit-box-shadow: 0 6 0 0 #343a40;
+  -moz-box-shadow: 0 6px 0 0 #343a40;
+}
+
 .btn-search {
   background-color: var(--secondaryColor);
 }
@@ -225,6 +236,24 @@ h2 > i {
 .form-check-label {
   margin-top: -0.2rem;
   font-size: 1.5rem;
+}
+
+.form-control {
+  background-color: var(--lightColor);
+  border: 2px solid #343a40;
+  border-radius: 5px;
+  box-shadow: 0 6px 0 0 #343a40;
+  -webkit-box-shadow: 0 6 0 0 #343a40;
+  -moz-box-shadow: 0 6px 0 0 #343a40;
+  padding-top: 0.5rem;
+  padding-right: 1rem;
+  padding-left: 1rem;
+}
+
+.form-control:focus {
+  box-shadow: 0 6px 0 0 #343a40;
+  -webkit-box-shadow: 0 6 0 0 #343a40;
+  -moz-box-shadow: 0 6px 0 0 #343a40;
 }
 
 .shopping-list-page {
@@ -291,6 +320,7 @@ h2 > i {
   background-color: var(--lightColor);
   /* height: 130px; */
 
+  margin-top: auto;
   padding: 30px;
   flex-direction: column;
 }

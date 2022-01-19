@@ -18,7 +18,7 @@ const SearchForm = () => {
         </div>
         <Link
           className="btn btn-edit text-dark mt-5 position-absolute top-100 start-50 translate-middle"
-          to="/"
+          to="/result"
         >
           <small>Advanced Search</small>
         </Link>
