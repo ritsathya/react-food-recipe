@@ -4,127 +4,127 @@
       "id": 1,
       "recipeName": "Yummy Bread",
       "tag": "breakfast",
-      "imgSrc": "images/bread.jpg"
+      "imgSrc": "/images/bread.jpg"
     },
     {
       "id": 2,
       "recipeName": "Cereal",
       "tag": "breakfast",
-      "imgSrc": "images/cereal.jpg"
+      "imgSrc": "/images/cereal.jpg"
     },
     {
       "id": 3,
       "recipeName": "Egg Toast",
       "tag": "breakfast",
-      "imgSrc": "images/egg-toast.jpg"
+      "imgSrc": "/images/egg-toast.jpg"
     },
     {
       "id": 4,
       "recipeName": "French Toast",
       "tag": "breakfast",
-      "imgSrc": "images/french-toast.jpg"
+      "imgSrc": "/images/french-toast.jpg"
     },
     {
       "id": 5,
       "recipeName": "Grilled Toast",
       "tag": "breakfast",
-      "imgSrc": "images/grilled-toast.jpg"
+      "imgSrc": "/images/grilled-toast.jpg"
     },
     {
       "id": 6,
       "recipeName": "Strawberry Pancake",
       "tag": "lunch",
-      "imgSrc": "images/strawberry-pancakes.jpg"
+      "imgSrc": "/images/strawberry-pancakes.jpg"
     },
     {
       "id": 7,
       "recipeName": "Blueberry Pancake",
       "tag": "lunch",
-      "imgSrc": "images/blueberry-pancakes.jpg"
+      "imgSrc": "/images/blueberry-pancakes.jpg"
     },
     {
       "id": 8,
       "recipeName": "Rice and Grilled Meat",
       "tag": "lunch",
-      "imgSrc": "images/rice&grilled_meat.jpg"
+      "imgSrc": "/images/rice&grilled_meat.jpg"
     },
     {
       "id": 9,
       "recipeName": "Pumpkin Soup",
       "tag": "dinner",
-      "imgSrc": "images/pumpkin-soup.jpg"
+      "imgSrc": "/images/pumpkin-soup.jpg"
     },
     {
       "id": 10,
       "recipeName": "Pumpkin Soup",
       "tag": "dinner",
-      "imgSrc": "images/zucchini-slice.jpg"
+      "imgSrc": "/images/zucchini-slice.jpg"
     },
     {
       "id": 11,
       "recipeName": "Easy Butter Chicken",
       "tag": "dinner",
-      "imgSrc": "images/easy-butter-chicken.jpg"
+      "imgSrc": "/images/easy-butter-chicken.jpg"
     },
     {
       "id": 12,
       "recipeName": "Easy Fried Rice",
       "tag": "dinner",
-      "imgSrc": "images/easy-fried-rice.jpg"
+      "imgSrc": "/images/easy-fried-rice.jpg"
     },
     {
       "id": 13,
       "recipeName": "Curried Sausages",
       "tag": "dinner",
-      "imgSrc": "images/curried-sausages.jpg"
+      "imgSrc": "/images/curried-sausages.jpg"
     },
     {
       "id": 14,
       "recipeName": "Beef nachos",
       "tag": "dinner",
-      "imgSrc": "images/beef-nachos.jpg"
+      "imgSrc": "/images/beef-nachos.jpg"
     },
     {
       "id": 15,
       "recipeName": "Vegetarian Lasagne",
       "tag": "dinner",
-      "imgSrc": "images/vegetarian-lasagne.jpg"
+      "imgSrc": "/images/vegetarian-lasagne.jpg"
     },
     {
       "id": 16,
       "recipeName": "Chicken Soup",
       "tag": "lunch",
-      "imgSrc": "images/chicken-soup.jpg"
+      "imgSrc": "/images/chicken-soup.jpg"
     },
     {
       "id": 17,
       "recipeName": "Savoury mince",
       "tag": "lunch",
-      "imgSrc": "images/savoury-mince.jpg"
+      "imgSrc": "/images/savoury-mince.jpg"
     },
     {
       "id": 18,
       "recipeName": "Chicken curry",
       "tag": "lunch",
-      "imgSrc": "images/chicken-curry.jpg"
+      "imgSrc": "/images/chicken-curry.jpg"
     },
     {
       "id": 19,
       "recipeName": "Crispy skinned salmon",
       "tag": "lunch",
-      "imgSrc": "images/crispy-skinned-salmon.jpg"
+      "imgSrc": "/images/crispy-skinned-salmon.jpg"
     },
     {
       "id": 20,
       "recipeName": "Healthy breakfast tacos",
       "tag": "breakfast",
-      "imgSrc": "images/healthy-breakfast-tacos.jpg"
+      "imgSrc": "/images/healthy-breakfast-tacos.jpg"
     },
     {
       "id": 21,
       "recipeName": "Breakfast Burritos",
       "tag": "breakfast",
-      "imgSrc": "images/burritos.jpg"
+      "imgSrc": "/images/burritos.jpg"
     }
   ]
 }

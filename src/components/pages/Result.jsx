@@ -1,16 +1,28 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import Navbar from "../Navbar";
 import ResultRecipe from "../ResultRecipe";
 
 const Result = ({ data }) => {
-  const [text, setText] = useState("");
+  const search = useLocation().search;
+  let history = useNavigate();
+
+  const [param, setParam] = useState(search.slice(8).replace("+", " "));
+  const [text, setText] = useState(param);
   const [recipes, setRecipes] = useState([]);
+
+  console.log(useLocation());
+
+  useEffect(() => {
+    fetchRecipes();
+  }, []);
 
   const fetchRecipes = () => {
     const newArray = data.filter((r) =>
-      r.recipeName.toLowerCase().includes(text.toLowerCase())
+      r.recipeName.toLowerCase().includes(param.toLowerCase())
     );
     setRecipes(newArray);
+    history(`/result/?search=${param.replace(" ", "+")}`);
   };
 
   return (
@@ -25,6 +37,7 @@ const Result = ({ data }) => {
           value={text}
           onChange={(e) => {
             setText(e.target.value);
+            setParam(e.target.value);
           }}
         />
         <button className="btn btn-search" type="button" onClick={fetchRecipes}>
