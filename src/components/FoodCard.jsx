@@ -16,7 +16,7 @@ const FoodCard = (props) => {
               src={array[0].imgSrc}
               text={array[0].recipeName}
               label={props.label}
-              path="/services"
+              path="/view"
             />
             <CardItem
               src={array[1].imgSrc}

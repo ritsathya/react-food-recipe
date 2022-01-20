@@ -408,6 +408,11 @@ h2 > i {
   margin: 10px auto;
 }
 
+.view-image{
+  margin-left: 40px;
+  width: 600px;
+}
+
 @media only screen and (min-width: 1200px) {
   .content__blog__container {
     width: 84%;
