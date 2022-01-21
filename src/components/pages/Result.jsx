@@ -11,10 +11,11 @@ const Result = ({ data }) => {
   const [text, setText] = useState(param);
   const [recipes, setRecipes] = useState([]);
 
-  console.log(useLocation());
+  // console.log(useLocation());
 
   useEffect(() => {
     fetchRecipes();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const fetchRecipes = () => {
