@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import CardItem from './CardItem';
 
 const GetRecommend = ({ recipes }) => {
-    const temp = recipes.filter( a => a.id <= 10);
+    const temp = recipes.filter( a => a.id <= 20);
     return (
       <>
         {temp.map((recipe) => (
@@ -11,6 +11,7 @@ const GetRecommend = ({ recipes }) => {
             src={recipe.imgSrc}
             text={recipe.recipeName}
             label={recipe.tag}
+            recommend={true}
             path="/services"
             />
         ))
