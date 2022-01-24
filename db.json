@@ -2,128 +2,540 @@
   "meals": [
     {
       "id": 1,
-      "recipeName": "Yummy Bread",
+      "recipeName": "Croissants",
       "tag": "breakfast",
-      "imgSrc": "/images/bread.jpg"
+      "description": "Learn how to make yummy croissants!! Share them with your family and friends. Enjoy!!!",
+      "ingredients": [
+        {
+          "ingredientName": "1 ¼ teaspoons active dry yeast",
+          "amount": "1"
+        },
+        {
+          "ingredientName": "3 tablespoons warm water (110 degrees F/45 degrees C)",
+          "amount": "1"
+        },
+        {
+          "ingredientName": "1 teaspoon white sugar",
+          "amount": "1"
+        },
+        {
+          "ingredientName": "1 ¾ cups all-purpose flour",
+          "amount": "1"
+        },
+        {
+          "ingredientName": "2 teaspoons white sugar",
+          "amount": "1"
+        },
+        {
+          "ingredientName": "1 ½ teaspoons salt",
+          "amount": "1"
+        },
+        {
+          "ingredientName": "⅔ cup warm milk",
+          "amount": "1"
+        },
+        {
+          "ingredientName": "2 tablespoons vegetable oil",
+          "amount": "1"
+        },
+        {
+          "ingredientName": "⅔ cup unsalted butter, chilled",
+          "amount": "1"
+        },
+        {
+          "ingredientName": "1 egg",
+          "amount": "1"
+        },
+        {
+          "ingredientName": "1 tablespoon water",
+          "amount": "1"
+        }
+      ],
+      "direction": [
+        "Combine yeast, warm water, and 1 teaspoon sugar. Allow to stand until creamy and frothy.",
+        "Measure flour into a mixing bowl. Dissolve 2 teaspoons sugar and salt in warm milk. Blend into flour along with yeast and oil. Mix well; knead until smooth. Cover, and let rise until over triple in volume, about 3 hours. Deflate gently, and let rise again until doubled, about another 3 hours. Deflate and chill 20 minutes.",
+        "Massage butter until pliable, but not soft and oily. Pat dough into a 14x8-inch rectangle. Smear butter over top two thirds, leaving 1/4-inch margin all around. Fold unbuttered third over middle third, and buttered top third down over that. Turn 90 degrees, so that folds are to left and right. Roll out to a 14x6-inch rectangle. Fold in three again. Sprinkle lightly with flour, and put dough in a plastic bag. Refrigerate 2 hours. Unwrap, sprinkle with flour, and deflate gently. Roll to a 14x6-inch rectangle, and fold again. Turn 90 degrees, and repeat. Wrap, and chill 2 hours.",
+        "To shape, roll dough out to a 20x5-inch rectangle. Cut in half crosswise, and chill half while shaping the other half. Roll out to a 15 x 5 inch rectangle. Cut into three 5 x 5 inch squares. Cut each square in half diagonally. Roll each triangle lightly to elongate the point, and make it 7 inches long. Grab the other 2 points, and stretch them out slightly as you roll it up. Place on a baking sheet, curving slightly. Let shaped croissants rise until puffy and light. In a small bowl, beat together egg and 1 tablespoon water. Glaze croissants with egg wash.",
+        "Bake in a preheated 475 degrees F (245 degrees C) oven for 12 to 15 minutes."
+      ],
+      "flavour": "normal",
+      "duration": 20,
+      "imgSrc": "/images/croissant.jpg"
     },
     {
       "id": 2,
       "recipeName": "Cereal",
       "tag": "breakfast",
+      "description": "This the easiest way to prepare your breakfast!!!",
+      "ingredients": [
+        {
+          "ingredientName": "cereal",
+          "amount": "1"
+        },
+        {
+          "ingredientName": "milk",
+          "amount": "1"
+        }
+      ],
+      "direction": ["Put cereal in the bowl", "Put milk into the cereal"],
+      "flavour": "normal",
+      "duration": 3,
       "imgSrc": "/images/cereal.jpg"
     },
     {
       "id": 3,
       "recipeName": "Egg Toast",
       "tag": "breakfast",
+      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur dolorum facere maiores reprehenderit nostrum. Ipsum laborum vel optio eum rerum.",
+      "ingredients": [
+        {
+          "ingredientName": "Lorem ipsum dolor sit amet.",
+          "amount": "1"
+        },
+        {
+          "ingredientName": "Lorem ipsum dolor sit amet.",
+          "amount": "1"
+        }
+      ],
+      "direction": [
+        "Lorem ipsum dolor sit amet.",
+        "Lorem ipsum dolor sit amet.",
+        "Lorem ipsum dolor sit amet."
+      ],
+      "flavour": "salty",
+      "duration": 8,
       "imgSrc": "/images/egg-toast.jpg"
     },
     {
       "id": 4,
       "recipeName": "French Toast",
       "tag": "breakfast",
+      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur dolorum facere maiores reprehenderit nostrum. Ipsum laborum vel optio eum rerum.",
+      "ingredients": [
+        {
+          "ingredientName": "Lorem ipsum dolor sit amet.",
+          "amount": "1"
+        },
+        {
+          "ingredientName": "Lorem ipsum dolor sit amet.",
+          "amount": "1"
+        }
+      ],
+      "direction": [
+        "Lorem ipsum dolor sit amet.",
+        "Lorem ipsum dolor sit amet.",
+        "Lorem ipsum dolor sit amet."
+      ],
+      "flavour": "normal",
+      "duration": 8,
       "imgSrc": "/images/french-toast.jpg"
     },
     {
       "id": 5,
       "recipeName": "Grilled Toast",
       "tag": "breakfast",
+      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur dolorum facere maiores reprehenderit nostrum. Ipsum laborum vel optio eum rerum.",
+      "ingredients": [
+        {
+          "ingredientName": "Lorem ipsum dolor sit amet.",
+          "amount": "1"
+        },
+        {
+          "ingredientName": "Lorem ipsum dolor sit amet.",
+          "amount": "1"
+        }
+      ],
+      "direction": [
+        "Lorem ipsum dolor sit amet.",
+        "Lorem ipsum dolor sit amet.",
+        "Lorem ipsum dolor sit amet."
+      ],
+      "flavour": "spicy",
+      "duration": 10,
       "imgSrc": "/images/grilled-toast.jpg"
     },
     {
       "id": 6,
       "recipeName": "Strawberry Pancake",
       "tag": "lunch",
+      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur dolorum facere maiores reprehenderit nostrum. Ipsum laborum vel optio eum rerum.",
+      "ingredients": [
+        {
+          "ingredientName": "Lorem ipsum dolor sit amet.",
+          "amount": "1"
+        },
+        {
+          "ingredientName": "Lorem ipsum dolor sit amet.",
+          "amount": "1"
+        }
+      ],
+      "direction": [
+        "Lorem ipsum dolor sit amet.",
+        "Lorem ipsum dolor sit amet.",
+        "Lorem ipsum dolor sit amet."
+      ],
+      "flavour": "normal",
+      "duration": 15,
       "imgSrc": "/images/strawberry-pancakes.jpg"
     },
     {
       "id": 7,
       "recipeName": "Blueberry Pancake",
       "tag": "lunch",
+      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur dolorum facere maiores reprehenderit nostrum. Ipsum laborum vel optio eum rerum.",
+      "ingredients": [
+        {
+          "ingredientName": "Lorem ipsum dolor sit amet.",
+          "amount": "1"
+        },
+        {
+          "ingredientName": "Lorem ipsum dolor sit amet.",
+          "amount": "1"
+        }
+      ],
+      "direction": [
+        "Lorem ipsum dolor sit amet.",
+        "Lorem ipsum dolor sit amet.",
+        "Lorem ipsum dolor sit amet."
+      ],
+      "flavour": "normal",
+      "duration": 15,
       "imgSrc": "/images/blueberry-pancakes.jpg"
     },
     {
       "id": 8,
       "recipeName": "Rice and Grilled Meat",
       "tag": "lunch",
+      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur dolorum facere maiores reprehenderit nostrum. Ipsum laborum vel optio eum rerum.",
+      "ingredients": [
+        {
+          "ingredientName": "Lorem ipsum dolor sit amet.",
+          "amount": "1"
+        },
+        {
+          "ingredientName": "Lorem ipsum dolor sit amet.",
+          "amount": "1"
+        }
+      ],
+      "direction": [
+        "Lorem ipsum dolor sit amet.",
+        "Lorem ipsum dolor sit amet.",
+        "Lorem ipsum dolor sit amet."
+      ],
+      "flavour": "normal",
+      "duration": 20,
       "imgSrc": "/images/rice&grilled_meat.jpg"
     },
     {
       "id": 9,
       "recipeName": "Pumpkin Soup",
       "tag": "dinner",
+      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur dolorum facere maiores reprehenderit nostrum. Ipsum laborum vel optio eum rerum.",
+      "ingredients": [
+        {
+          "ingredientName": "Lorem ipsum dolor sit amet.",
+          "amount": "1"
+        },
+        {
+          "ingredientName": "Lorem ipsum dolor sit amet.",
+          "amount": "1"
+        }
+      ],
+      "direction": [
+        "Lorem ipsum dolor sit amet.",
+        "Lorem ipsum dolor sit amet.",
+        "Lorem ipsum dolor sit amet."
+      ],
+      "flavour": "sweet",
+      "duration": 30,
       "imgSrc": "/images/pumpkin-soup.jpg"
     },
     {
       "id": 10,
-      "recipeName": "Pumpkin Soup",
+      "recipeName": "Zucchini Slice",
       "tag": "dinner",
+      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur dolorum facere maiores reprehenderit nostrum. Ipsum laborum vel optio eum rerum.",
+      "ingredients": [
+        {
+          "ingredientName": "Lorem ipsum dolor sit amet.",
+          "amount": "1"
+        },
+        {
+          "ingredientName": "Lorem ipsum dolor sit amet.",
+          "amount": "1"
+        }
+      ],
+      "direction": [
+        "Lorem ipsum dolor sit amet.",
+        "Lorem ipsum dolor sit amet.",
+        "Lorem ipsum dolor sit amet."
+      ],
+      "flavour": "normal",
+      "duration": 20,
       "imgSrc": "/images/zucchini-slice.jpg"
     },
     {
       "id": 11,
       "recipeName": "Easy Butter Chicken",
       "tag": "dinner",
+      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur dolorum facere maiores reprehenderit nostrum. Ipsum laborum vel optio eum rerum.",
+      "ingredients": [
+        {
+          "ingredientName": "Lorem ipsum dolor sit amet.",
+          "amount": "1"
+        },
+        {
+          "ingredientName": "Lorem ipsum dolor sit amet.",
+          "amount": "1"
+        }
+      ],
+      "direction": [
+        "Lorem ipsum dolor sit amet.",
+        "Lorem ipsum dolor sit amet.",
+        "Lorem ipsum dolor sit amet."
+      ],
+      "flavour": "sweet",
+      "duration": 18,
       "imgSrc": "/images/easy-butter-chicken.jpg"
     },
     {
       "id": 12,
       "recipeName": "Easy Fried Rice",
       "tag": "dinner",
+      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur dolorum facere maiores reprehenderit nostrum. Ipsum laborum vel optio eum rerum.",
+      "ingredients": [
+        {
+          "ingredientName": "Lorem ipsum dolor sit amet.",
+          "amount": "1"
+        },
+        {
+          "ingredientName": "Lorem ipsum dolor sit amet.",
+          "amount": "1"
+        }
+      ],
+      "direction": [
+        "Lorem ipsum dolor sit amet.",
+        "Lorem ipsum dolor sit amet.",
+        "Lorem ipsum dolor sit amet."
+      ],
+      "flavour": "normal",
+      "duration": 20,
       "imgSrc": "/images/easy-fried-rice.jpg"
     },
     {
       "id": 13,
       "recipeName": "Curried Sausages",
       "tag": "dinner",
+      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur dolorum facere maiores reprehenderit nostrum. Ipsum laborum vel optio eum rerum.",
+      "ingredients": [
+        {
+          "ingredientName": "Lorem ipsum dolor sit amet.",
+          "amount": "1"
+        },
+        {
+          "ingredientName": "Lorem ipsum dolor sit amet.",
+          "amount": "1"
+        }
+      ],
+      "direction": [
+        "Lorem ipsum dolor sit amet.",
+        "Lorem ipsum dolor sit amet.",
+        "Lorem ipsum dolor sit amet."
+      ],
+      "flavour": "spicy",
+      "duration": 30,
       "imgSrc": "/images/curried-sausages.jpg"
     },
     {
       "id": 14,
       "recipeName": "Beef nachos",
       "tag": "dinner",
+      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur dolorum facere maiores reprehenderit nostrum. Ipsum laborum vel optio eum rerum.",
+      "ingredients": [
+        {
+          "ingredientName": "Lorem ipsum dolor sit amet.",
+          "amount": "1"
+        },
+        {
+          "ingredientName": "Lorem ipsum dolor sit amet.",
+          "amount": "1"
+        }
+      ],
+      "direction": [
+        "Lorem ipsum dolor sit amet.",
+        "Lorem ipsum dolor sit amet.",
+        "Lorem ipsum dolor sit amet."
+      ],
+      "flavour": "normal",
+      "duration": 10,
       "imgSrc": "/images/beef-nachos.jpg"
     },
     {
       "id": 15,
       "recipeName": "Vegetarian Lasagne",
       "tag": "dinner",
+      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur dolorum facere maiores reprehenderit nostrum. Ipsum laborum vel optio eum rerum.",
+      "ingredients": [
+        {
+          "ingredientName": "Lorem ipsum dolor sit amet.",
+          "amount": "1"
+        },
+        {
+          "ingredientName": "Lorem ipsum dolor sit amet.",
+          "amount": "1"
+        }
+      ],
+      "direction": [
+        "Lorem ipsum dolor sit amet.",
+        "Lorem ipsum dolor sit amet.",
+        "Lorem ipsum dolor sit amet."
+      ],
+      "flavour": "normal",
+      "duration": 20,
       "imgSrc": "/images/vegetarian-lasagne.jpg"
     },
     {
       "id": 16,
       "recipeName": "Chicken Soup",
       "tag": "lunch",
+      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur dolorum facere maiores reprehenderit nostrum. Ipsum laborum vel optio eum rerum.",
+      "ingredients": [
+        {
+          "ingredientName": "Lorem ipsum dolor sit amet.",
+          "amount": "1"
+        },
+        {
+          "ingredientName": "Lorem ipsum dolor sit amet.",
+          "amount": "1"
+        }
+      ],
+      "direction": [
+        "Lorem ipsum dolor sit amet.",
+        "Lorem ipsum dolor sit amet.",
+        "Lorem ipsum dolor sit amet."
+      ],
+      "flavour": "normal",
+      "duration": 35,
       "imgSrc": "/images/chicken-soup.jpg"
     },
     {
       "id": 17,
       "recipeName": "Savoury mince",
       "tag": "lunch",
+      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur dolorum facere maiores reprehenderit nostrum. Ipsum laborum vel optio eum rerum.",
+      "ingredients": [
+        {
+          "ingredientName": "Lorem ipsum dolor sit amet.",
+          "amount": "1"
+        },
+        {
+          "ingredientName": "Lorem ipsum dolor sit amet.",
+          "amount": "1"
+        }
+      ],
+      "direction": [
+        "Lorem ipsum dolor sit amet.",
+        "Lorem ipsum dolor sit amet.",
+        "Lorem ipsum dolor sit amet."
+      ],
+      "flavour": "normal",
+      "duration": 10,
       "imgSrc": "/images/savoury-mince.jpg"
     },
     {
       "id": 18,
       "recipeName": "Chicken curry",
       "tag": "lunch",
+      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur dolorum facere maiores reprehenderit nostrum. Ipsum laborum vel optio eum rerum.",
+      "ingredients": [
+        {
+          "ingredientName": "Lorem ipsum dolor sit amet.",
+          "amount": "1"
+        },
+        {
+          "ingredientName": "Lorem ipsum dolor sit amet.",
+          "amount": "1"
+        }
+      ],
+      "direction": [
+        "Lorem ipsum dolor sit amet.",
+        "Lorem ipsum dolor sit amet.",
+        "Lorem ipsum dolor sit amet."
+      ],
+      "flavour": "normal",
+      "duration": 30,
       "imgSrc": "/images/chicken-curry.jpg"
     },
     {
       "id": 19,
       "recipeName": "Crispy skinned salmon",
       "tag": "lunch",
+      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur dolorum facere maiores reprehenderit nostrum. Ipsum laborum vel optio eum rerum.",
+      "ingredients": [
+        {
+          "ingredientName": "Lorem ipsum dolor sit amet.",
+          "amount": "1"
+        },
+        {
+          "ingredientName": "Lorem ipsum dolor sit amet.",
+          "amount": "1"
+        }
+      ],
+      "direction": [
+        "Lorem ipsum dolor sit amet.",
+        "Lorem ipsum dolor sit amet.",
+        "Lorem ipsum dolor sit amet."
+      ],
+      "flavour": "salty",
+      "duration": 12,
       "imgSrc": "/images/crispy-skinned-salmon.jpg"
     },
     {
       "id": 20,
       "recipeName": "Healthy breakfast tacos",
       "tag": "breakfast",
+      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur dolorum facere maiores reprehenderit nostrum. Ipsum laborum vel optio eum rerum.",
+      "ingredients": [
+        {
+          "ingredientName": "Lorem ipsum dolor sit amet.",
+          "amount": "1"
+        },
+        {
+          "ingredientName": "Lorem ipsum dolor sit amet.",
+          "amount": "1"
+        }
+      ],
+      "direction": [
+        "Lorem ipsum dolor sit amet.",
+        "Lorem ipsum dolor sit amet.",
+        "Lorem ipsum dolor sit amet."
+      ],
+      "flavour": "normal",
+      "duration": 10,
       "imgSrc": "/images/healthy-breakfast-tacos.jpg"
     },
     {
       "id": 21,
       "recipeName": "Breakfast Burritos",
       "tag": "breakfast",
+      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur dolorum facere maiores reprehenderit nostrum. Ipsum laborum vel optio eum rerum.",
+      "ingredients": [
+        {
+          "ingredientName": "Lorem ipsum dolor sit amet.",
+          "amount": "1"
+        },
+        {
+          "ingredientName": "Lorem ipsum dolor sit amet.",
+          "amount": "1"
+        }
+      ],
+      "direction": [
+        "Lorem ipsum dolor sit amet.",
+        "Lorem ipsum dolor sit amet.",
+        "Lorem ipsum dolor sit amet."
+      ],
+      "flavour": "normal",
+      "duration": 10,
       "imgSrc": "/images/burritos.jpg"
     }
   ]

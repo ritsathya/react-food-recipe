@@ -36,7 +36,7 @@ function App() {
           />
           <Route path="/shoppingList" element={<ShoppingList />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/view/*" element={recipes && <View data={recipes} />}/>
+          <Route path="/view" element={recipes && <View data={recipes} />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Router>
