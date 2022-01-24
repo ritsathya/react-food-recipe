@@ -18,10 +18,12 @@ const Footer = () => {
       <div className="footer-connect">
         <p>Follow us: </p>
         <div className="footer-icon flex jc-between ai-center">
-          <i className="fa-brands fa-github" />
-          <i className="fa-brands fa-facebook" />
-          <i className="fa-brands fa-youtube" />
-          <i className="fa-brands fa-instagram" />
+          <a href="https://github.com/ritsathya/react-food-recipe">
+            <i className="fa-brands fa-github" />
+          </a>
+          {/* <i className="fa-brands fa-facebook" /> */}
+          {/* <i className="fa-brands fa-youtube" /> */}
+          {/* <i className="fa-brands fa-instagram" /> */}
         </div>
       </div>
     </footer>

@@ -31,7 +31,7 @@ function App() {
             element={recipes && <Home recipe={recipes} />}
           />
           <Route
-            path="/result/*"
+            path="/result"
             element={recipes && <Result data={recipes} />}
           />
           <Route path="/shoppingList" element={<ShoppingList />} />
