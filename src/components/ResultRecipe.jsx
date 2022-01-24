@@ -10,7 +10,8 @@ const ResultRecipe = ({ recipes }) => {
           src={recipe.imgSrc}
           text={recipe.recipeName}
           label={recipe.tag}
-          path="/services"
+          duration={recipe.duration}
+          path={`/view/?id=${recipe.id}`}
         />
       ))}
     </>

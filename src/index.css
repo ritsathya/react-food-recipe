@@ -22,6 +22,11 @@ html {
   display: flex;
 }
 
+.flex-col {
+  display: flex;
+  flex-direction: column;
+}
+
 .flex-center {
   display: flex;
   justify-content: center;
@@ -40,6 +45,12 @@ html {
   justify-content: center;
 }
 
+.jc-end {
+  -webkit-box-pack: flex-end;
+  -ms-flex-pack: flex-end;
+  justify-content: flex-end;
+}
+
 .ai-center {
   -webkit-box-align: center;
   -ms-flex-align: center;
@@ -49,7 +60,7 @@ html {
 .grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  margin-top: 100px;
+  margin-top: 30px;
   margin-left: 100px;
   margin-right: 100px;
   gap: 20px;

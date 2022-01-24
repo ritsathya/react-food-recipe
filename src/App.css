@@ -318,7 +318,7 @@ h2 > i {
   /* height: 130px; */
 
   margin-top: auto;
-  padding: 30px;
+  padding: 40px;
   flex-direction: column;
 }
 
@@ -436,33 +436,121 @@ h2 > i {
   margin: 10px auto;
 }
 
-.view-image{
+.view-image {
   margin-left: 40px;
-  width: 600px;
-  height: 600px;
+  width: 500px;
+  height: 350px;
   object-fit: cover;
+  border-radius: 15px;
+  flex-shrink: 1;
 }
 
-.ingredient-title, .steps-title, .Recommended-Restaurant-Title{
+.view-description {
+  margin-bottom: auto;
+  width: 50%;
+}
+.view-description > p {
+  font-size: 22px;
+  text-indent: 6%;
+  text-align: justify;
+  color: #3a414b;
+}
+
+.ingredients {
+  list-style: none;
+  line-height: 1.5;
+  margin-left: 20px;
+}
+
+.ingredients > input {
+  margin-right: 15px;
+}
+
+.directions {
+  list-style: none;
+}
+
+.directions > i {
+  display: block;
+  margin-top: 15px;
+  color: var(--secondaryColor);
+}
+
+.directions > i > h3 {
+  margin-left: 10px;
+  display: inline;
+  font-family: "Baloo Tamma 2";
+}
+
+.directions > p {
+  text-align: justify;
+  font-size: 22px;
+  margin-top: 10px;
+  line-height: 1.5;
+  color: rgba(0, 0, 0, 0.95);
+}
+
+.ingredient-title,
+.steps-title,
+.Recommended-Restaurant-Title {
   text-align: left;
-  color: red;
-  font-family: 'Courier New', Courier, monospace;
+  color: var(--secondaryColor);
 }
 
-.view-description-section{
-  width: 800px;
+.view-description-section {
+  width: 80%;
 }
 
-.order-list-view h3{
-  font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif
+.rating-section {
+  padding-top: 50px;
+  padding-left: 50px;
+  gap: 20px;
+  font-size: 22px;
+  background-color: #f6f7f6;
 }
 
-.Recommend-item{
-  min-width: 200px;
-  max-height: 200px;
+.comment-section {
+  margin-left: 50px;
+  background-color: #f6f7f6;
+}
+
+.comment-section-header {
+  gap: 6px;
+  font-size: 22px;
+}
+
+.comment-section-header > p {
+  margin: 0;
+}
+
+.comment-section > textarea {
+  resize: none;
+  /* overflow: hidden; */
+  min-height: 50px;
+  max-height: 100px;
+}
+
+.comment-section button {
+  display: block;
+  margin-top: 5px;
+}
+
+.Recommend-item {
+  margin-top: 20px;
   overflow-x: auto;
 }
 
+.Recommend-item > * {
+  max-height: 200px;
+  min-width: 200px;
+}
+
+.search-filter {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  margin: 50px auto;
+  gap: 10px;
+}
 @media only screen and (min-width: 1200px) {
   .content__blog__container {
     width: 84%;
@@ -501,6 +589,10 @@ h2 > i {
 
   .login__form h2 {
     font-size: 50px;
+  }
+
+  .search-filter {
+    grid-template-columns: 1fr;
   }
 }
 
