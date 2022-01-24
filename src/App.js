@@ -5,6 +5,7 @@ import Home from "./components/pages/Home";
 import ShoppingList from "./components/pages/ShoppingList";
 import Login from "./components/pages/Login";
 import NotFound from "./components/NotFound";
+import View from "./components/pages/View";
 import Result from "./components/pages/Result";
 
 function App() {
@@ -35,6 +36,7 @@ function App() {
           />
           <Route path="/shoppingList" element={<ShoppingList />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/view/*" element={recipes && <View data={recipes} />}/>
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Router>

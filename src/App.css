@@ -79,15 +79,12 @@ h2 > i {
   margin: 50px 0 45px;
 }
 
-.cards__items {
-  margin-bottom: 24px;
-}
-
 .cards__item {
   display: flex;
   flex: 1;
   margin: 0 1rem;
   border-radius: 10px;
+  margin-bottom: 24px;
 }
 
 .cards__item__link {
@@ -436,6 +433,33 @@ h2 > i {
   font-size: 60px;
   width: 40px;
   margin: 10px auto;
+}
+
+.view-image{
+  margin-left: 40px;
+  width: 600px;
+  height: 600px;
+  object-fit: cover;
+}
+
+.ingredient-title, .steps-title, .Recommended-Restaurant-Title{
+  text-align: left;
+  color: red;
+  font-family: 'Courier New', Courier, monospace;
+}
+
+.view-description-section{
+  width: 800px;
+}
+
+.order-list-view h3{
+  font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif
+}
+
+.Recommend-item{
+  min-width: 200px;
+  max-height: 200px;
+  overflow-x: auto;
 }
 
 @media only screen and (min-width: 1200px) {

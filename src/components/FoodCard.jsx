@@ -16,19 +16,19 @@ const FoodCard = (props) => {
               src={array[0].imgSrc}
               text={array[0].recipeName}
               label={props.label}
-              path="/services"
+              path={`/view/?id=${array[0].id}`}
             />
             <CardItem
               src={array[1].imgSrc}
               text={array[1].recipeName}
               label={props.label}
-              path="/services"
+              path={`/view/?id=${array[1].id}`}
             />
             <CardItem
               src={array[2].imgSrc}
               text={array[2].recipeName}
               label={props.label}
-              path="/services"
+              path={`/view/?id=${array[2].id}`}
             />
           </ul>
           <ul className="cards__items">
@@ -36,25 +36,25 @@ const FoodCard = (props) => {
               src={array[3].imgSrc}
               text={array[3].recipeName}
               label={props.label}
-              path="/services"
+              path={`/view/&id=${array[3].id}`}
             />
             <CardItem
               src={array[4].imgSrc}
               text={array[4].recipeName}
               label={props.label}
-              path="/services"
+              path={`/view/&id=${array[4].id}`}
             />
             <CardItem
               src={array[5].imgSrc}
               text={array[5].recipeName}
               label={props.label}
-              path="/services"
+              path={`/view/&id=${array[5].id}`}
             />
             <CardItem
               src={array[6].imgSrc}
               text={array[6].recipeName}
               label={props.label}
-              path="/services"
+              path={`/view/&id=${array[6].id}`}
             />
           </ul>
         </div>
