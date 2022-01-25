@@ -69,7 +69,7 @@ const View = ({ data }) => {
             onClick={handleClick}
           />
         </div>
-        <div className="view-containe flex-center">
+        <div className="view-container flex-center">
           <img
             className="view-image"
             src={recipe && recipe[0].imgSrc}
