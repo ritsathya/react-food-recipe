@@ -551,6 +551,14 @@ h2 > i {
   margin: 50px auto;
   gap: 10px;
 }
+
+.error-msg {
+  margin: 0;
+  display: block;
+  color: var(--secondaryColor);
+  font-weight: lighter;
+}
+
 @media only screen and (min-width: 1200px) {
   .content__blog__container {
     width: 84%;

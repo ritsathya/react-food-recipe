@@ -538,5 +538,21 @@
       "duration": 10,
       "imgSrc": "/images/burritos.jpg"
     }
+  ],
+  "users": [
+    {
+      "id": 1,
+      "email": "sathya@gmail.com",
+      "phone": "012345678",
+      "userName": "sathya",
+      "password": "sathya123"
+    },
+    {
+      "id": 2,
+      "email": "thida@gmail.com",
+      "phone": "087654321",
+      "userName": "thida",
+      "password": "thida123"
+    }
   ]
 }
