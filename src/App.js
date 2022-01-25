@@ -11,9 +11,10 @@ import Register from "./components/pages/Register";
 
 function App() {
   const [recipes, setRecipes] = useState(null);
+  const dbURL = "https://foodie-fake-rest-api.herokuapp.com/meals";
 
   useEffect(() => {
-    fetch("http://localhost:5000/meals")
+    fetch(dbURL)
       .then((res) => {
         return res.json();
       })
