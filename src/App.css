@@ -594,6 +594,46 @@ h2 > i {
   .search-filter {
     grid-template-columns: 1fr;
   }
+
+  .view-container {
+    flex-direction: column;
+    gap: 30px;
+  }
+
+  .view-image {
+    width: 300px;
+    height: 300px;
+    margin-left: 0;
+  }
+
+  .view-description {
+    width: 100%;
+  }
+
+  .view-description-section {
+    width: 93%;
+  }
+
+  .directions > p {
+    font-size: 18px;
+  }
+
+  .ingredients {
+    font-size: 18px;
+  }
+
+  .ingredients > label {
+    display: inline;
+  }
+
+  .comment-section {
+    margin: 0;
+    padding-left: 50px;
+  }
+
+  #commentTextBox {
+    width: 86%;
+  }
 }
 
 @media screen and (max-width: 700px) {
