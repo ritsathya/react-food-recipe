@@ -539,6 +539,34 @@
       "imgSrc": "/images/burritos.jpg"
     }
   ],
+  "comments": [
+    {
+      "id": 1,
+      "userID": 1,
+      "body": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque, magnam!",
+      "mealID": 1
+    },
+    {
+      "id": 2,
+      "userID": 3,
+      "body": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate voluptatem distinctio eligendi rerum modi soluta ea deserunt facilis libero aliquam.",
+      "mealID": 1
+    },
+    {
+      "id": 3,
+      "userID": 2,
+      "body": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque, magnam!",
+      "mealID": 1
+    }
+  ],
+  "replies": [
+    {
+      "id": 1,
+      "userID": 2,
+      "body": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque, magnam!",
+      "commentID": 1
+    }
+  ],
   "users": [
     {
       "id": 1,
@@ -553,6 +581,13 @@
       "phone": "087654321",
       "userName": "thida",
       "password": "thida123"
+    },
+    {
+      "id": 3,
+      "email": "thevy@gmail.com",
+      "phone": "08564321",
+      "userName": "thevy",
+      "password": "theavy123"
     }
   ]
 }

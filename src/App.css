@@ -506,12 +506,12 @@ h2 > i {
   padding-left: 50px;
   gap: 20px;
   font-size: 22px;
-  background-color: #f6f7f6;
+  background-color: var(--lightColor);
 }
 
 .comment-section {
-  margin-left: 50px;
-  background-color: #f6f7f6;
+  padding-left: 50px;
+  background-color: var(--lightColor);
 }
 
 .comment-section-header {
@@ -523,16 +523,56 @@ h2 > i {
   margin: 0;
 }
 
-.comment-section > textarea {
+.comment-textarea {
   resize: none;
-  /* overflow: hidden; */
-  min-height: 50px;
+  min-width: 50px;
   max-height: 100px;
 }
 
-.comment-section button {
+.comment-section .btn-post {
   display: block;
+  font-size: larger;
   margin-top: 5px;
+  border-radius: 5px;
+}
+
+.prev-comments {
+  width: 580px;
+}
+
+.comment-owner {
+  border-radius: 3px;
+  width: 150px;
+  padding: 5px;
+}
+
+.comment-owner > i {
+  margin: 0 5px;
+}
+
+.comment-body,
+.reply-body {
+  background-color: #fff;
+  border: 1px solid var(--darkColor);
+  border-radius: 3px;
+  min-height: 80px;
+  margin-top: 2px;
+  margin-bottom: 20px;
+  padding: 10px;
+}
+
+.btn-like,
+.btn-reply {
+  border-radius: 4px;
+}
+
+.btn-reply {
+  margin-left: 6px;
+}
+
+.reply {
+  margin-left: 40px;
+  min-height: 80px;
 }
 
 .Recommend-item {
@@ -640,6 +680,10 @@ h2 > i {
   }
 
   #commentTextBox {
+    width: 86%;
+  }
+
+  .prev-comments {
     width: 86%;
   }
 }

@@ -9,9 +9,38 @@ const View = ({ data }) => {
   const id = useLocation().search;
   const param = id.slice(4).replace("+", " ");
   const [recipe, setRecipe] = useState(null);
+  const [users, setUsers] = useState(null);
+  const [comments, setComments] = useState(null);
+  const [replies, setReplies] = useState(null);
   const [click, setClick] = useState(false);
+  const [clickID, setClickID] = useState(0);
+  const [isReplyClick, setIsReplyClick] = useState(false);
 
   useEffect(() => {
+    fetch("http://localhost:5000/comments")
+      .then((res) => {
+        return res.json();
+      })
+      .then((data) => {
+        setComments(data);
+      });
+
+    fetch("http://localhost:5000/replies")
+      .then((res) => {
+        return res.json();
+      })
+      .then((data) => {
+        setReplies(data);
+      });
+
+    fetch("http://localhost:5000/users")
+      .then((res) => {
+        return res.json();
+      })
+      .then((data) => {
+        setUsers(data);
+      });
+
     fetchRecipes();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -55,6 +84,73 @@ const View = ({ data }) => {
         </li>
       ));
     }
+  };
+
+  const getUserName = (id) => {
+    return users.map((user) => {
+      return user.id === id && user.userName;
+    });
+  };
+
+  const getReply = (reply, comment) => {
+    return (
+      reply.commentID === comment.id && (
+        <div key={reply.id} className="reply">
+          <div className="comment-owner flex ai-center">
+            <i className="fa-solid fa-circle-user" />
+            {users && getUserName(reply.userID)}
+          </div>
+          <div className="reply-body">
+            <p>{reply.body}</p>
+            <button className="btn-like">Like</button>
+          </div>
+        </div>
+      )
+    );
+  };
+
+  const getComment = (comment) => {
+    return (
+      comment.mealID === parseInt(param) && (
+        <div key={comment.id}>
+          <div className="comment-owner flex ai-center">
+            <i className="fa-solid fa-circle-user" />
+            {users && getUserName(comment.userID)}
+          </div>
+          <div className="comment-body">
+            <p>{comment.body}</p>
+            <button className="btn-like">Like</button>
+            <button
+              className="btn-reply"
+              onClick={() => {
+                setClickID(comment.id);
+                setIsReplyClick(!isReplyClick);
+              }}
+            >
+              Reply
+            </button>
+          </div>
+          <div
+            className={
+              isReplyClick && clickID === comment.id ? "d-block" : "d-none"
+            }
+          >
+            <textarea
+              className="comment-textarea"
+              cols="50"
+              rows="10"
+            ></textarea>
+            <button className="btn-post mb-5">Post</button>
+          </div>
+          <>
+            {replies &&
+              replies.map((reply) => {
+                return getReply(reply, comment);
+              })}
+          </>
+        </div>
+      )
+    );
   };
 
   return (
@@ -108,7 +204,13 @@ const View = ({ data }) => {
           <i className="fa-solid fa-comment" />
         </div>
         <textarea id="commentTextBox" cols="50" rows="10"></textarea>
-        <button className="btn btn-post mb-5">Post</button>
+        <button className="btn-post mb-5">Post</button>
+        <div className="prev-comments">
+          {comments &&
+            comments.map((comment) => {
+              return getComment(comment);
+            })}
+        </div>
       </div>
 
       <div className="Recommended-Restaurant-Div">
