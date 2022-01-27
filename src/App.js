@@ -12,7 +12,6 @@ import Register from "./components/pages/Register";
 function App() {
   const [recipes, setRecipes] = useState(null);
   const dbURL = "https://foodie-fake-rest-api.herokuapp.com/meals";
-  // const devURL = "http://localhost:5000/meals";
 
   useEffect(() => {
     fetch(dbURL)
@@ -33,10 +32,7 @@ function App() {
             index
             element={recipes && <Home recipe={recipes} />}
           />
-          <Route
-            path="/result"
-            element={recipes && <Result data={recipes} />}
-          />
+          <Route path="/result" element={<Result />} />
           <Route path="/shoppingList" element={<ShoppingList />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />

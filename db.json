@@ -233,7 +233,7 @@
       "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur dolorum facere maiores reprehenderit nostrum. Ipsum laborum vel optio eum rerum.",
       "ingredients": [
         {
-          "ingredientName": "Lorem ipsum dolor sit amet.",
+          "ingredientName": "pumpkin",
           "amount": "1"
         },
         {
@@ -405,7 +405,11 @@
           "amount": "1"
         },
         {
-          "ingredientName": "Lorem ipsum dolor sit amet.",
+          "ingredientName": "chicken",
+          "amount": "1"
+        },
+        {
+          "ingredientName": "Lorem ipsum dolor sit.",
           "amount": "1"
         }
       ],
@@ -537,6 +541,65 @@
       "flavour": "normal",
       "duration": 10,
       "imgSrc": "/images/burritos.jpg"
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "userID": 1,
+      "body": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque, magnam!",
+      "mealID": 1
+    },
+    {
+      "id": 2,
+      "userID": 3,
+      "body": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate voluptatem distinctio eligendi rerum modi soluta ea deserunt facilis libero aliquam.",
+      "mealID": 1
+    },
+    {
+      "id": 3,
+      "userID": 2,
+      "body": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque, magnam!",
+      "mealID": 1
+    }
+  ],
+  "replies": [
+    {
+      "id": 1,
+      "userID": 2,
+      "body": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque, magnam!",
+      "mealID": 1,
+      "commentID": 1
+    }
+  ],
+  "users": [
+    {
+      "id": 1,
+      "email": "sathya@gmail.com",
+      "phone": "012345678",
+      "userName": "sathya",
+      "password": "sathya123"
+    },
+    {
+      "id": 2,
+      "email": "thida@gmail.com",
+      "phone": "087654321",
+      "userName": "thida",
+      "password": "thida123"
+    },
+    {
+      "id": 3,
+      "email": "thevy@gmail.com",
+      "phone": "08564321",
+      "userName": "thevy",
+      "password": "theavy123"
+    },
+    {
+      "email": "oudom@gmail.com",
+      "phone": "098374834",
+      "userName": "oudom",
+      "password": "oudom123",
+      "id": 4
     }
   ]
 }

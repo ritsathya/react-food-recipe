@@ -4,9 +4,10 @@ import Footer from "../Footer";
 import Navbar from "../Navbar";
 import ResultRecipe from "../ResultRecipe";
 
-const Result = ({ data }) => {
+const Result = () => {
+  const URL = `https://foodie-fake-rest-api.herokuapp.com/meals`;
   const search = useLocation().search;
-  let history = useNavigate();
+  let navigate = useNavigate();
 
   const [param, setParam] = useState(search.slice(8).replace("+", " "));
   const [text, setText] = useState(param);
@@ -17,29 +18,55 @@ const Result = ({ data }) => {
   const [flavour, setFlavour] = useState("normal");
 
   useEffect(() => {
-    fetchRecipes();
+    // get all recipes for initial page load
+    fetch(URL)
+      .then((res) => {
+        return res.json();
+      })
+      .then((data) => {
+        setRecipes(data);
+      });
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const fetchRecipes = () => {
-    const newArray = data.filter((r) =>
-      r.recipeName.toLowerCase().includes(param.toLowerCase())
-    );
-    setRecipes(newArray);
-    history(`/result/?search=${param.replace(" ", "+")}`);
-  };
-
   const handleSearch = () => {
-    const newArray = data.filter((r) => {
-      return (
-        r.recipeName.toLowerCase().includes(param.toLowerCase()) &&
-        r.tag.toLowerCase().includes(foodType.toLowerCase()) &&
-        r.flavour.toLowerCase().includes(flavour.toLowerCase())
-      );
-    });
+    let filterURL = URL;
 
-    setRecipes(newArray);
-    history(`/result/?search=${param.replace(" ", "+")}`);
+    // filter recipes
+    if (inclusion !== "") {
+      filterURL = filterURL.concat("?recipeName_like=", text, "&q=", inclusion);
+    } else {
+      filterURL = filterURL.concat("?q=", text);
+    }
+    if (flavour !== "normal")
+      filterURL = filterURL.concat("&flavour=", flavour);
+    if (foodType !== "") filterURL = filterURL.concat("&tag_like=", foodType);
+
+    fetch(filterURL)
+      .then((res) => {
+        return res.json();
+      })
+      .then((data) => {
+        setRecipes(data);
+
+        // filter recipes by excluding ingredient
+        if (exclusion !== "") {
+          fetch(URL.concat("?q=", exclusion))
+            .then((res) => {
+              return res.json();
+            })
+            .then((data2) => {
+              let diff = data.filter(
+                ({ id: id1 }) => !data2.some(({ id: id2 }) => id2 === id1)
+              );
+              setRecipes(diff);
+            });
+        }
+      });
+
+    // update website url
+    navigate(`/result/?search=${param.replace(" ", "+")}`);
   };
 
   return (
