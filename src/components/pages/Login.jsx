@@ -1,41 +1,34 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Navbar from "../Navbar";
 
 const Login = () => {
-  const devURL = "http://localhost:5000/users";
   let navigate = useNavigate();
 
-  const [userLists, setUserLists] = useState(null);
   const [user, setUser] = useState("");
+  const [password, setPassword] = useState("");
   const [isUser, setIsUser] = useState(true);
   const [isPass, setIsPass] = useState(true);
-  const [password, setPassword] = useState("");
-
-  useEffect(() => {
-    fetch(devURL)
-      .then((res) => {
-        return res.json();
-      })
-      .then((data) => {
-        setUserLists(data);
-      });
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    for (let i = 0; i < userLists.length; i++) {
-      if (userLists[i].email === user || userLists[i].phone === user) {
-        setIsUser(true);
-        userLists[i].password === password
-          ? navigate("../", { replace: true })
-          : setIsPass(false);
-        return;
-      }
-      setIsUser(false);
-    }
+
+    let fetchURL = "https://foodie-fake-rest-api.herokuapp.com/users";
+
+    fetchURL = +user
+      ? fetchURL.concat("?phone=", user)
+      : fetchURL.concat("?email=", user);
+
+    fetch(fetchURL)
+      .then((res) => {
+        return res.json();
+      })
+      .then((users) => {
+        setIsUser(users.length >= 1);
+        setIsPass(users.some((user) => user.password === password));
+
+        if (isUser && isPass) navigate("..");
+      });
   };
   return (
     <>
