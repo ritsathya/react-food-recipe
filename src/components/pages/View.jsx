@@ -6,6 +6,7 @@ import GetRecommend from "../GetRecommend";
 import Footer from "../Footer";
 
 const View = ({ data }) => {
+  const URL = `https://foodie-fake-rest-api.herokuapp.com`;
   const id = useLocation().search;
   const param = id.slice(4).replace("+", " ");
   const [recipe, setRecipe] = useState(null);
@@ -17,7 +18,7 @@ const View = ({ data }) => {
   const [isReplyClick, setIsReplyClick] = useState(false);
 
   useEffect(() => {
-    fetch("http://localhost:5000/comments")
+    fetch(`${URL}/comments?mealID=${param}`)
       .then((res) => {
         return res.json();
       })
@@ -25,7 +26,7 @@ const View = ({ data }) => {
         setComments(data);
       });
 
-    fetch("http://localhost:5000/replies")
+    fetch(`${URL}/replies?mealID=${param}`)
       .then((res) => {
         return res.json();
       })
@@ -33,7 +34,7 @@ const View = ({ data }) => {
         setReplies(data);
       });
 
-    fetch("http://localhost:5000/users")
+    fetch(`${URL}/users`)
       .then((res) => {
         return res.json();
       })

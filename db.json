@@ -233,7 +233,7 @@
       "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur dolorum facere maiores reprehenderit nostrum. Ipsum laborum vel optio eum rerum.",
       "ingredients": [
         {
-          "ingredientName": "Lorem ipsum dolor sit amet.",
+          "ingredientName": "pumpkin",
           "amount": "1"
         },
         {
@@ -405,7 +405,11 @@
           "amount": "1"
         },
         {
-          "ingredientName": "Lorem ipsum dolor sit amet.",
+          "ingredientName": "chicken",
+          "amount": "1"
+        },
+        {
+          "ingredientName": "Lorem ipsum dolor sit.",
           "amount": "1"
         }
       ],
@@ -564,6 +568,7 @@
       "id": 1,
       "userID": 2,
       "body": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque, magnam!",
+      "mealID": 1,
       "commentID": 1
     }
   ],
@@ -588,6 +593,13 @@
       "phone": "08564321",
       "userName": "thevy",
       "password": "theavy123"
+    },
+    {
+      "email": "oudom@gmail.com",
+      "phone": "098374834",
+      "userName": "oudom",
+      "password": "oudom123",
+      "id": 4
     }
   ]
 }
