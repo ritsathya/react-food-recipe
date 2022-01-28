@@ -8,6 +8,7 @@ import NotFound from "./components/NotFound";
 import View from "./components/pages/View";
 import Result from "./components/pages/Result";
 import Register from "./components/pages/Register";
+import Profile from "./components/pages/Profile";
 
 function App() {
   const [recipes, setRecipes] = useState(null);
@@ -36,6 +37,7 @@ function App() {
           <Route path="/shoppingList" element={<ShoppingList />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/profile" element={<Profile />} />
           <Route path="/view" element={recipes && <View data={recipes} />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
