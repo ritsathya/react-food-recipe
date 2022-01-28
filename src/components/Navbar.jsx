@@ -1,7 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
+import { UserContext } from "../UserContext";
 
 const Navbar = (props) => {
+  const { contextUser } = useContext(UserContext);
+
   return (
     <>
       <nav className="navbar navbar-expand-lg navbar-light">
@@ -46,10 +49,16 @@ const Navbar = (props) => {
                 <i className="fas fa-edit" />
               </Link>
               <div className="separator"></div>
-              <Link className="btn btn-login" to="/login">
-                <i className="fas fa-sign-in-alt" />
-                Login
-              </Link>
+              {contextUser ? (
+                <Link className="btn" to="/profile">
+                  {contextUser[0].userName}
+                </Link>
+              ) : (
+                <Link className={"btn btn-login"} to="/login">
+                  <i className="fas fa-sign-in-alt" />
+                  Login
+                </Link>
+              )}
             </div>
           </div>
         </div>

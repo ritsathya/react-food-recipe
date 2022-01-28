@@ -607,9 +607,9 @@ h2 > i {
   background-color: var(--primaryColor) !important;
 }
 
-#v-pills-tabContent {
+#pills-tabContent {
   width: 100%;
-  height: 100vh;
+  /* height: 100vh; */
   background-color: var(--lightColor);
   padding: 20px;
   margin-bottom: 40px;
@@ -636,6 +636,17 @@ h2 > i {
 
 .profile-name {
   font-size: 30px;
+}
+
+.profile-body {
+  padding: 40px;
+}
+
+.profile-email,
+.profile-phone {
+  gap: 30px;
+  font-size: 22px;
+  margin-left: 20px;
 }
 
 @media only screen and (min-width: 1200px) {

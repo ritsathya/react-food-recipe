@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { UserContext } from "../../UserContext";
 import Navbar from "../Navbar";
 
 const Login = () => {
   let navigate = useNavigate();
 
+  const { setContextUser } = useContext(UserContext);
   const [user, setUser] = useState("");
   const [password, setPassword] = useState("");
   const [isUser, setIsUser] = useState(true);
@@ -27,7 +29,10 @@ const Login = () => {
         setIsUser(users.length >= 1);
         setIsPass(users.some((user) => user.password === password));
 
-        if (isUser && isPass) navigate("..");
+        if (isUser && isPass) {
+          setContextUser(users);
+          navigate("../", { replace: true });
+        }
       });
   };
   return (
