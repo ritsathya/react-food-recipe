@@ -19,7 +19,7 @@ const Result = () => {
 
   useEffect(() => {
     // get all recipes for initial page load
-    fetch(URL)
+    fetch(URL.concat("?q=", param))
       .then((res) => {
         return res.json();
       })
