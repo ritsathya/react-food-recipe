@@ -1,12 +1,16 @@
-import React, { useState, useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import React, { useState, useEffect, useContext } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 
 import Navbar from "../Navbar";
 import GetRecommend from "../GetRecommend";
 import Footer from "../Footer";
+import { UserContext } from "../../UserContext";
 
 const View = ({ data }) => {
   const URL = `https://foodie-fake-rest-api.herokuapp.com`;
+  const { contextUser } = useContext(UserContext);
+  const navigate = useNavigate();
+
   const id = useLocation().search;
   const param = id.slice(4).replace("+", " ");
   const [recipe, setRecipe] = useState(null);
@@ -16,6 +20,7 @@ const View = ({ data }) => {
   const [click, setClick] = useState(false);
   const [clickID, setClickID] = useState(0);
   const [isReplyClick, setIsReplyClick] = useState(false);
+  const [textArea, setTextArea] = useState("");
 
   useEffect(() => {
     fetch(`${URL}/comments?mealID=${param}`)
@@ -154,6 +159,29 @@ const View = ({ data }) => {
     );
   };
 
+  const postComment = () => {
+    if (!contextUser) {
+      alert("Please login to post comments.")
+      navigate("/login");
+      return;
+    }
+    // console.log(contextUser);
+    // console.log(textArea);
+    const requestOption = {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ userID: contextUser[0].id, body: textArea, mealID: +param })
+    };
+
+    fetch("https://foodie-fake-rest-api.herokuapp.com/comments", requestOption)
+      .then((res) => res.json())
+      .then((data) => {
+        setComments([...comments, data]);
+        // console.log(comments);
+        setTextArea("");
+      })
+  }
+
   return (
     <>
       <Navbar path="/view" />
@@ -204,8 +232,8 @@ const View = ({ data }) => {
           <p>Leave comment for this recipe</p>
           <i className="fa-solid fa-comment" />
         </div>
-        <textarea id="commentTextBox" cols="50" rows="10"></textarea>
-        <button className="btn-post mb-5">Post</button>
+        <textarea id="commentTextBox" cols="50" rows="10" value={textArea} onChange={(e) => setTextArea(e.target.value)}></textarea>
+        <button className="btn-post mb-5" onClick={() => postComment()}>Post</button>
         <div className="prev-comments">
           {comments &&
             comments.map((comment) => {
