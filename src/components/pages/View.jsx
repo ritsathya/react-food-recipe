@@ -21,6 +21,7 @@ const View = ({ data }) => {
   const [clickID, setClickID] = useState(0);
   const [isReplyClick, setIsReplyClick] = useState(false);
   const [textArea, setTextArea] = useState('');
+  const [replyArea, setReplyArea] = useState('');
 
   useEffect(() => {
     fetch(`${URL}/comments?mealID=${param}`)
@@ -145,8 +146,15 @@ const View = ({ data }) => {
               className='comment-textarea'
               cols='50'
               rows='10'
+              value={replyArea}
+              onChange={(e) => setReplyArea(e.target.value)}
             ></textarea>
-            <button className='btn-post mb-5'>Post</button>
+            <button
+              className='btn-post mb-5'
+              onClick={() => replyComment(comment.id)}
+            >
+              Post
+            </button>
           </div>
           <>
             {replies &&
@@ -180,6 +188,33 @@ const View = ({ data }) => {
       .then((data) => {
         setComments([...comments, data]);
         setTextArea('');
+      });
+  };
+
+  const replyComment = (commentID) => {
+    if (!contextUser) {
+      alert('Please login to reply this comment.');
+      navigate('/login');
+      return;
+    }
+
+    const requestOption = {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        userID: contextUser[0].id,
+        body: replyArea,
+        mealID: +param,
+        commentID: commentID,
+      }),
+    };
+
+    fetch('https://foodie-fake-rest-api.herokuapp.com/replies', requestOption)
+      .then((res) => res.json())
+      .then((data) => {
+        setReplies([...replies, data]);
+        setReplyArea('');
+        setIsReplyClick(false);
       });
   };
 
