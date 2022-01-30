@@ -1,10 +1,10 @@
-import React, { useState, useEffect, useContext } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import React, { useState, useEffect, useContext } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 
-import Navbar from "../Navbar";
-import GetRecommend from "../GetRecommend";
-import Footer from "../Footer";
-import { UserContext } from "../../UserContext";
+import Navbar from '../Navbar';
+import GetRecommend from '../GetRecommend';
+import Footer from '../Footer';
+import { UserContext } from '../../UserContext';
 
 const View = ({ data }) => {
   const URL = `https://foodie-fake-rest-api.herokuapp.com`;
@@ -12,7 +12,7 @@ const View = ({ data }) => {
   const navigate = useNavigate();
 
   const id = useLocation().search;
-  const param = id.slice(4).replace("+", " ");
+  const param = id.slice(4).replace('+', ' ');
   const [recipe, setRecipe] = useState(null);
   const [users, setUsers] = useState(null);
   const [comments, setComments] = useState(null);
@@ -20,7 +20,7 @@ const View = ({ data }) => {
   const [click, setClick] = useState(false);
   const [clickID, setClickID] = useState(0);
   const [isReplyClick, setIsReplyClick] = useState(false);
-  const [textArea, setTextArea] = useState("");
+  const [textArea, setTextArea] = useState('');
 
   useEffect(() => {
     fetch(`${URL}/comments?mealID=${param}`)
@@ -69,8 +69,8 @@ const View = ({ data }) => {
       const ingredients = recipe[0].ingredients;
       let i = 0;
       return ingredients.map((ingredient) => (
-        <li key={++i} className="ingredients">
-          <input type="checkbox" id={`box${i}`} />
+        <li key={++i} className='ingredients'>
+          <input type='checkbox' id={`box${i}`} />
           <label htmlFor={`box${i}`}>{ingredient.ingredientName}</label>
         </li>
       ));
@@ -82,11 +82,11 @@ const View = ({ data }) => {
       const directions = recipe[0].direction;
       let i = 0;
       return directions.map((direction) => (
-        <li key={++i} className="directions">
-          <i className="fa-solid fa-utensils">
+        <li key={++i} className='directions'>
+          <i className='fa-solid fa-utensils'>
             <h3>Step {i + 1}</h3>
           </i>
-          <p className="my-0">{direction}</p>
+          <p className='my-0'>{direction}</p>
         </li>
       ));
     }
@@ -101,14 +101,14 @@ const View = ({ data }) => {
   const getReply = (reply, comment) => {
     return (
       reply.commentID === comment.id && (
-        <div key={reply.id} className="reply">
-          <div className="comment-owner flex ai-center">
-            <i className="fa-solid fa-circle-user" />
+        <div key={reply.id} className='reply'>
+          <div className='comment-owner flex ai-center'>
+            <i className='fa-solid fa-circle-user' />
             {users && getUserName(reply.userID)}
           </div>
-          <div className="reply-body">
+          <div className='reply-body'>
             <p>{reply.body}</p>
-            <button className="btn-like">Like</button>
+            <button className='btn-like'>Like</button>
           </div>
         </div>
       )
@@ -119,15 +119,15 @@ const View = ({ data }) => {
     return (
       comment.mealID === parseInt(param) && (
         <div key={comment.id}>
-          <div className="comment-owner flex ai-center">
-            <i className="fa-solid fa-circle-user" />
+          <div className='comment-owner flex ai-center'>
+            <i className='fa-solid fa-circle-user' />
             {users && getUserName(comment.userID)}
           </div>
-          <div className="comment-body">
+          <div className='comment-body'>
             <p>{comment.body}</p>
-            <button className="btn-like">Like</button>
+            <button className='btn-like'>Like</button>
             <button
-              className="btn-reply"
+              className='btn-reply'
               onClick={() => {
                 setClickID(comment.id);
                 setIsReplyClick(!isReplyClick);
@@ -138,15 +138,15 @@ const View = ({ data }) => {
           </div>
           <div
             className={
-              isReplyClick && clickID === comment.id ? "d-block" : "d-none"
+              isReplyClick && clickID === comment.id ? 'd-block' : 'd-none'
             }
           >
             <textarea
-              className="comment-textarea"
-              cols="50"
-              rows="10"
+              className='comment-textarea'
+              cols='50'
+              rows='10'
             ></textarea>
-            <button className="btn-post mb-5">Post</button>
+            <button className='btn-post mb-5'>Post</button>
           </div>
           <>
             {replies &&
@@ -161,80 +161,89 @@ const View = ({ data }) => {
 
   const postComment = () => {
     if (!contextUser) {
-      alert("Please login to post comments.")
-      navigate("/login");
+      alert('Please login to post comments.');
+      navigate('/login');
       return;
     }
-    // console.log(contextUser);
-    // console.log(textArea);
     const requestOption = {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ userID: contextUser[0].id, body: textArea, mealID: +param })
+      body: JSON.stringify({
+        userID: contextUser[0].id,
+        body: textArea,
+        mealID: +param,
+      }),
     };
 
-    fetch("https://foodie-fake-rest-api.herokuapp.com/comments", requestOption)
+    fetch('https://foodie-fake-rest-api.herokuapp.com/comments', requestOption)
       .then((res) => res.json())
       .then((data) => {
         setComments([...comments, data]);
-        // console.log(comments);
-        setTextArea("");
-      })
-  }
+        setTextArea('');
+      });
+  };
 
   return (
     <>
-      <Navbar path="/view" />
-      <div style={{ backgroundColor: "#f6f7f6" }}>
-        <div className="flex jc-end fa-2x">
-          <i className="far fa-flag  my-2"></i>
+      <Navbar path='/view' />
+      <div style={{ backgroundColor: '#f6f7f6' }}>
+        <div className='flex jc-end fa-2x'>
+          <i className='far fa-flag  my-2'></i>
           <i
-            className={`${click ? "fa-solid" : "fa-regular"} fa-heart m-2 mx-4`}
-            style={{ color: `${click ? "red" : "black"}` }}
+            className={`${click ? 'fa-solid' : 'fa-regular'} fa-heart m-2 mx-4`}
+            style={{ color: `${click ? 'red' : 'black'}` }}
             onClick={handleClick}
           />
         </div>
-        <div className="view-container flex-center">
+        <div className='view-container flex-center'>
           <img
-            className="view-image"
+            className='view-image'
             src={recipe && recipe[0].imgSrc}
-            alt="food"
+            alt='food'
           />
-          <div className="view-description">
-            <h1 className="text-center">
+          <div className='view-description'>
+            <h1 className='text-center'>
               How to make {recipe && recipe[0].recipeName}
             </h1>
-            <p className="mx-5">{getDescription()}</p>
+            <p className='mx-5'>{getDescription()}</p>
           </div>
         </div>
-        <div className="view-description-section">
-          <h2 className="ingredient-title m-4">Ingredient</h2>
-          <ul className="h3">{getIngredients()}</ul>
+        <div className='view-description-section'>
+          <h2 className='ingredient-title m-4'>Ingredient</h2>
+          <ul className='h3'>{getIngredients()}</ul>
 
-          <h2 className="steps-title m-4">Steps</h2>
-          <ul className="h3 mx-4 my-0">{getDirection()}</ul>
+          <h2 className='steps-title m-4'>Steps</h2>
+          <ul className='h3 mx-4 my-0'>{getDirection()}</ul>
         </div>
       </div>
 
-      <div className="rating-section flex">
+      <div className='rating-section flex'>
         <p>Rate this recipe:</p>
-        <div className="rating-stars">
-          <i className="fa-regular fa-star" />
-          <i className="fa-regular fa-star" />
-          <i className="fa-regular fa-star" />
-          <i className="fa-regular fa-star" />
-          <i className="fa-regular fa-star" />
+        <div className='rating-stars'>
+          <i className='fa-regular fa-star' />
+          <i className='fa-regular fa-star' />
+          <i className='fa-regular fa-star' />
+          <i className='fa-regular fa-star' />
+          <i className='fa-regular fa-star' />
         </div>
       </div>
 
-      <div className="comment-section ">
-        <div className="comment-section-header flex ai-center">
+      <div className='comment-section '>
+        <div className='comment-section-header flex ai-center'>
           <p>Leave comment for this recipe</p>
-          <i className="fa-solid fa-comment" />
+          <i className='fa-solid fa-comment' />
         </div>
-        <textarea id="commentTextBox" cols="50" rows="10" value={textArea} onChange={(e) => setTextArea(e.target.value)}></textarea>
-        <button className="btn-post mb-5" onClick={() => postComment()}>Post</button>
-        <div className="prev-comments">
+        <textarea
+          id='commentTextBox'
+          cols='50'
+          rows='10'
+          value={textArea}
+          onChange={(e) => setTextArea(e.target.value)}
+        ></textarea>
+        <button className='btn-post mb-5' onClick={() => postComment()}>
+          Post
+        </button>
+        <div className='prev-comments'>
           {comments &&
             comments.map((comment) => {
               return getComment(comment);
@@ -242,11 +251,11 @@ const View = ({ data }) => {
         </div>
       </div>
 
-      <div className="Recommended-Restaurant-Div">
-        <h3 className="Recommended-Restaurant-Title mx-4">
+      <div className='Recommended-Restaurant-Div'>
+        <h3 className='Recommended-Restaurant-Title mx-4'>
           Recommended Restaurants
         </h3>
-        <div className="Recommend-item d-flex flex-row">
+        <div className='Recommend-item d-flex flex-row'>
           <GetRecommend recipes={data} />
         </div>
       </div>
