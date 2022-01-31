@@ -10,6 +10,10 @@ const View = ({ data }) => {
   const URL = `https://foodie-fake-rest-api.herokuapp.com`;
   const { contextUser } = useContext(UserContext);
   const navigate = useNavigate();
+  const stars = [1, 2, 3, 4, 5];
+  const [starValue, setStarValue] = useState(0);
+  const [avgRate, setAvgRate] = useState(0);
+  const [numRate, setNumRate] = useState(0);
 
   const id = useLocation().search;
   const param = id.slice(4).replace('+', ' ');
@@ -255,11 +259,29 @@ const View = ({ data }) => {
       <div className='rating-section flex'>
         <p>Rate this recipe:</p>
         <div className='rating-stars'>
-          <i className='fa-regular fa-star' />
-          <i className='fa-regular fa-star' />
-          <i className='fa-regular fa-star' />
-          <i className='fa-regular fa-star' />
-          <i className='fa-regular fa-star' />
+          {stars.map((s, i) => (
+            <i
+              key={i}
+              className={
+                starValue < s ? 'fa-regular fa-star' : 'fa-solid fa-star'
+              }
+              onClick={() => {
+                setStarValue(s);
+                if (avgRate === 0) {
+                  setAvgRate(s);
+                  setNumRate(1);
+                } else {
+                  let sum = s + avgRate * numRate;
+                  setNumRate(numRate + 1);
+                  setAvgRate(sum / numRate);
+                }
+
+                console.log(avgRate);
+                console.log(numRate);
+              }}
+              style={{ cursor: 'pointer' }}
+            />
+          ))}
         </div>
       </div>
 
