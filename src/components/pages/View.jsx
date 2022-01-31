@@ -12,8 +12,6 @@ const View = ({ data }) => {
   const navigate = useNavigate();
   const stars = [1, 2, 3, 4, 5];
   const [starValue, setStarValue] = useState(0);
-  const [avgRate, setAvgRate] = useState(0);
-  const [numRate, setNumRate] = useState(0);
 
   const id = useLocation().search;
   const param = id.slice(4).replace('+', ' ');
@@ -51,6 +49,14 @@ const View = ({ data }) => {
       .then((data) => {
         setUsers(data);
       });
+
+    if (contextUser) {
+      fetch(`${URL}/ratings?userID=${contextUser[0].id}&mealID=${+param}`)
+        .then((res) => res.json())
+        .then((ratings) => {
+          if (ratings.length > 0) setStarValue(ratings[0].score);
+        });
+    }
 
     fetchRecipes();
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -222,6 +228,40 @@ const View = ({ data }) => {
       });
   };
 
+  const rateRecipe = (score) => {
+    const requestOption = {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        userID: contextUser[0].id,
+        score: score,
+        mealID: +param,
+      }),
+    };
+
+    fetch(`${URL}/ratings`, requestOption)
+      .then((res) => res.json())
+      .then(() => {
+        setStarValue(score);
+      });
+  };
+
+  const updateRating = (id, score) => {
+    const requestOption = {
+      method: 'PATCH',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        score: score,
+      }),
+    };
+
+    fetch(`${URL}/ratings/${id}`, requestOption)
+      .then((res) => res.json())
+      .then(() => {
+        setStarValue(score);
+      });
+  };
+
   return (
     <>
       <Navbar path='/view' />
@@ -266,18 +306,22 @@ const View = ({ data }) => {
                 starValue < s ? 'fa-regular fa-star' : 'fa-solid fa-star'
               }
               onClick={() => {
-                setStarValue(s);
-                if (avgRate === 0) {
-                  setAvgRate(s);
-                  setNumRate(1);
+                if (!contextUser) {
+                  alert('Please login to rate this recipe');
+                  navigate('/login');
+                  return;
                 } else {
-                  let sum = s + avgRate * numRate;
-                  setNumRate(numRate + 1);
-                  setAvgRate(sum / numRate);
+                  fetch(
+                    `${URL}/ratings?userID=${
+                      contextUser[0].id
+                    }&mealID=${+param}`
+                  )
+                    .then((res) => res.json())
+                    .then((ratings) => {
+                      if (ratings < 1) rateRecipe(s);
+                      else updateRating(ratings[0].id, s);
+                    });
                 }
-
-                console.log(avgRate);
-                console.log(numRate);
               }}
               style={{ cursor: 'pointer' }}
             />
