@@ -14,6 +14,7 @@ const View = ({ data }) => {
   const stars = [1, 2, 3, 4, 5];
   const [starValue, setStarValue] = useState(0);
   const [showModal, setShowModal] = useState(false);
+  const [report, setReport] = useState(false);
   const [reportBox, setReportBox] = useState('');
 
   const id = useLocation().search;
@@ -58,6 +59,12 @@ const View = ({ data }) => {
         .then((res) => res.json())
         .then((ratings) => {
           if (ratings.length > 0) setStarValue(ratings[0].score);
+        });
+
+      fetch(`${URL}/reports?userID=${contextUser[0].id}&mealID=${+param}`)
+        .then((res) => res.json())
+        .then((reports) => {
+          if (reports.length > 0) setReport(true);
         });
     }
 
@@ -270,11 +277,15 @@ const View = ({ data }) => {
       <div style={{ backgroundColor: '#f6f7f6' }}>
         <div className='flex jc-end fa-2x'>
           <i
-            className='far fa-flag  my-2'
+            className={
+              report ? 'fa-solid fa-flag my-2' : 'fa-regular fa-flag  my-2'
+            }
             style={{ cursor: 'pointer' }}
             onClick={() => {
               if (!contextUser) {
                 window.confirm('Please login to report') && navigate('/login');
+              } else if (report) {
+                alert('Report have been submitted.');
               } else {
                 setShowModal(!showModal);
               }
@@ -303,8 +314,23 @@ const View = ({ data }) => {
               <Button
                 variant='warning'
                 onClick={() => {
-                  setReportBox('');
-                  setShowModal(!showModal);
+                  const requestOption = {
+                    method: 'POST',
+                    headers: { 'Content-type': 'application/json' },
+                    body: JSON.stringify({
+                      message: reportBox,
+                      userID: contextUser[0].id,
+                      mealID: +param,
+                    }),
+                  };
+
+                  fetch(`${URL}/reports`, requestOption)
+                    .then((res) => res.json())
+                    .then(() => {
+                      setReport(true);
+                      setReportBox('');
+                      setShowModal(!showModal);
+                    });
                 }}
               >
                 Submit report
