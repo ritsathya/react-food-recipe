@@ -69,6 +69,7 @@ const View = ({ data }) => {
 
   const handleClick = () => {
     setClick(!click);
+    
   };
 
   const getDescription = () => {

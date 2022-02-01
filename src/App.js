@@ -15,11 +15,16 @@ import Result from "./components/pages/Result";
 import Register from "./components/pages/Register";
 import Profile from "./components/pages/Profile";
 import { UserContext } from "./UserContext";
+import toBuyRecipeList from "./components/pages/FavRecipeList";
+import ToBuyRecipeList from "./components/pages/FavRecipeList";
+import FavRecipeList from "./components/pages/FavRecipeList";
 
 function App() {
   const [recipes, setRecipes] = useState(null);
+  const [user, setUser] = useState(null);
   const [contextUser, setContextUser] = useState(null);
   const dbURL = "https://foodie-fake-rest-api.herokuapp.com/meals";
+  const userURL = "https://foodie-fake-rest-api.herokuapp.com/users"
 
   useEffect(() => {
     fetch(dbURL)
@@ -28,6 +33,13 @@ function App() {
       })
       .then((data) => {
         setRecipes(data);
+      });
+      fetch(userURL)
+      .then((res) => {
+        return res.json();
+      })
+      .then((user) => {
+        setUser(user);
       });
   }, []);
 
@@ -45,7 +57,7 @@ function App() {
             <Route
               path="/shoppingList"
               element={
-                contextUser ? <ShoppingList /> : <Navigate to="/login" />
+                contextUser ? <FavRecipeList user={contextUser} recipes={recipes} /> : <Navigate to="/login" />
               }
             />
             <Route path="/login" element={<Login />} />

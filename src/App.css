@@ -649,6 +649,11 @@ h2 > i {
   margin-left: 20px;
 }
 
+.favorite_recipe_list > *{
+  max-height: 300px;
+  max-width: 200px;
+}
+
 @media only screen and (min-width: 1200px) {
   .content__blog__container {
     width: 84%;
