@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { Modal, Button, Form } from 'react-bootstrap';
 
 import Navbar from '../Navbar';
 import GetRecommend from '../GetRecommend';
@@ -12,6 +13,8 @@ const View = ({ data }) => {
   const navigate = useNavigate();
   const stars = [1, 2, 3, 4, 5];
   const [starValue, setStarValue] = useState(0);
+  const [showModal, setShowModal] = useState(false);
+  const [reportBox, setReportBox] = useState('');
 
   const id = useLocation().search;
   const param = id.slice(4).replace('+', ' ');
@@ -179,8 +182,7 @@ const View = ({ data }) => {
 
   const postComment = () => {
     if (!contextUser) {
-      alert('Please login to post comments.');
-      navigate('/login');
+      window.confirm('Please login to post comments.') && navigate('/login');
       return;
     }
     const requestOption = {
@@ -193,7 +195,7 @@ const View = ({ data }) => {
       }),
     };
 
-    fetch('https://foodie-fake-rest-api.herokuapp.com/comments', requestOption)
+    fetch(`${URL}/comments`, requestOption)
       .then((res) => res.json())
       .then((data) => {
         setComments([...comments, data]);
@@ -203,8 +205,8 @@ const View = ({ data }) => {
 
   const replyComment = (commentID) => {
     if (!contextUser) {
-      alert('Please login to reply this comment.');
-      navigate('/login');
+      window.confirm('Please login to reply this comment.') &&
+        navigate('/login');
       return;
     }
 
@@ -219,7 +221,7 @@ const View = ({ data }) => {
       }),
     };
 
-    fetch('https://foodie-fake-rest-api.herokuapp.com/replies', requestOption)
+    fetch(`${URL}/replies`, requestOption)
       .then((res) => res.json())
       .then((data) => {
         setReplies([...replies, data]);
@@ -267,10 +269,51 @@ const View = ({ data }) => {
       <Navbar path='/view' />
       <div style={{ backgroundColor: '#f6f7f6' }}>
         <div className='flex jc-end fa-2x'>
-          <i className='far fa-flag  my-2'></i>
+          <i
+            className='far fa-flag  my-2'
+            style={{ cursor: 'pointer' }}
+            onClick={() => {
+              if (!contextUser) {
+                window.confirm('Please login to report') && navigate('/login');
+              } else {
+                setShowModal(!showModal);
+              }
+            }}
+          />
+          <Modal show={showModal} onHide={() => setShowModal(!showModal)}>
+            <Modal.Header closeButton>
+              <Modal.Title>Report Recipe</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+              <Form>
+                <div className='mb-3'>
+                  <label htmlFor='message-text' className='col-form-label'>
+                    Message:
+                  </label>
+                  <textarea
+                    className='form-control'
+                    id='message-text'
+                    value={reportBox}
+                    onChange={(e) => setReportBox(e.target.value)}
+                  ></textarea>
+                </div>
+              </Form>
+            </Modal.Body>
+            <Modal.Footer>
+              <Button
+                variant='warning'
+                onClick={() => {
+                  setReportBox('');
+                  setShowModal(!showModal);
+                }}
+              >
+                Submit report
+              </Button>
+            </Modal.Footer>
+          </Modal>
           <i
             className={`${click ? 'fa-solid' : 'fa-regular'} fa-heart m-2 mx-4`}
-            style={{ color: `${click ? 'red' : 'black'}` }}
+            style={{ color: `${click ? 'red' : 'black'}`, cursor: 'pointer' }}
             onClick={handleClick}
           />
         </div>
@@ -307,9 +350,8 @@ const View = ({ data }) => {
               }
               onClick={() => {
                 if (!contextUser) {
-                  alert('Please login to rate this recipe');
-                  navigate('/login');
-                  return;
+                  window.confirm('Please login to rate this recipe') &&
+                    navigate('/login');
                 } else {
                   fetch(
                     `${URL}/ratings?userID=${
@@ -318,8 +360,9 @@ const View = ({ data }) => {
                   )
                     .then((res) => res.json())
                     .then((ratings) => {
-                      if (ratings < 1) rateRecipe(s);
-                      else updateRating(ratings[0].id, s);
+                      ratings < 1
+                        ? rateRecipe(s)
+                        : updateRating(ratings[0].id, s);
                     });
                 }
               }}
