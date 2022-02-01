@@ -17,7 +17,7 @@
 .hero {
   min-height: 31.25rem;
   background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-    url("../public/images/hero-img.jpg");
+    url('../public/images/hero-img.jpg');
   background-size: cover;
 }
 
@@ -341,7 +341,7 @@ h2 > i {
 
 .login {
   background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-    url("../public/images/hero-img.jpg");
+    url('../public/images/hero-img.jpg');
   background-size: cover;
   min-height: 100vh;
 }
@@ -479,7 +479,7 @@ h2 > i {
 .directions > i > h3 {
   margin-left: 10px;
   display: inline;
-  font-family: "Baloo Tamma 2";
+  font-family: 'Baloo Tamma 2';
 }
 
 .directions > p {
