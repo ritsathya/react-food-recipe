@@ -1,25 +1,26 @@
-import "./App.css";
-import React, { useState, useEffect } from "react";
+import './App.css';
+import React, { useState, useEffect } from 'react';
 import {
   BrowserRouter as Router,
   Navigate,
   Route,
   Routes,
-} from "react-router-dom";
-import Home from "./components/pages/Home";
-import ShoppingList from "./components/pages/ShoppingList";
-import Login from "./components/pages/Login";
-import NotFound from "./components/NotFound";
-import View from "./components/pages/View";
-import Result from "./components/pages/Result";
-import Register from "./components/pages/Register";
-import Profile from "./components/pages/Profile";
-import { UserContext } from "./UserContext";
+} from 'react-router-dom';
+import Home from './components/pages/Home';
+import ShoppingList from './components/pages/ShoppingList';
+import Login from './components/pages/Login';
+import NotFound from './components/NotFound';
+import View from './components/pages/View';
+import Result from './components/pages/Result';
+import Register from './components/pages/Register';
+import Profile from './components/pages/Profile';
+import { UserContext } from './UserContext';
+import Post from './components/pages/Post';
 
 function App() {
   const [recipes, setRecipes] = useState(null);
   const [contextUser, setContextUser] = useState(null);
-  const dbURL = "https://foodie-fake-rest-api.herokuapp.com/meals";
+  const dbURL = 'https://foodie-fake-rest-api.herokuapp.com/meals';
 
   useEffect(() => {
     fetch(dbURL)
@@ -37,25 +38,26 @@ function App() {
         <UserContext.Provider value={{ contextUser, setContextUser }}>
           <Routes>
             <Route
-              path="/"
+              path='/'
               index
               element={recipes && <Home recipe={recipes} />}
             />
-            <Route path="/result" element={<Result />} />
+            <Route path='/result' element={<Result />} />
             <Route
-              path="/shoppingList"
+              path='/shoppingList'
               element={
-                contextUser ? <ShoppingList /> : <Navigate to="/login" />
+                contextUser ? <ShoppingList /> : <Navigate to='/login' />
               }
             />
-            <Route path="/login" element={<Login />} />
-            <Route path="/register" element={<Register />} />
+            <Route path='/login' element={<Login />} />
+            <Route path='/register' element={<Register />} />
             <Route
-              path="/profile"
-              element={contextUser ? <Profile /> : <Navigate to="/login" />}
+              path='/profile'
+              element={contextUser ? <Profile /> : <Navigate to='/login' />}
             />
-            <Route path="/view" element={recipes && <View data={recipes} />} />
-            <Route path="*" element={<NotFound />} />
+            <Route path='/post' element={<Post />} />
+            <Route path='/view' element={recipes && <View data={recipes} />} />
+            <Route path='*' element={<NotFound />} />
           </Routes>
         </UserContext.Provider>
       </Router>
