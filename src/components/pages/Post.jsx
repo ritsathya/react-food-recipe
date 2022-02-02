@@ -1,10 +1,10 @@
 import React, { useContext, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
 import { UserContext } from '../../UserContext';
 import Navbar from '../Navbar';
+import { storage } from '../../firebase';
 
 const Post = () => {
-  let navigate = useNavigate();
+  // let navigate = useNavigate();
 
   const { contextUser } = useContext(UserContext);
   const [duration, setDuration] = useState(0);
@@ -16,22 +16,27 @@ const Post = () => {
   const [flavours, setFlavours] = useState([]);
   const [selectedFile, setSelectedFile] = useState(null);
 
+  const uploadImg = (img) => {
+    // logic goes here
+  };
+
   const handleSubmit = (e) => {
+    console.log(e.target[0].file[0]);
     e.preventDefault();
 
-    const postContent = {
-      recipeName: title,
-      tag: foodType,
-      description: desc,
-      ingredients: ingre,
-      directions: direction,
-      flavour: flavours,
-      duration: duration,
-      userID: contextUser[0].id,
-      imgSrc: selectedFile,
-    };
+    // const postContent = {
+    //   recipeName: title,
+    //   tag: foodType,
+    //   description: desc,
+    //   ingredients: ingre,
+    //   directions: direction,
+    //   flavour: flavours,
+    //   duration: duration,
+    //   userID: contextUser[0].id,
+    //   imgSrc: selectedFile,
+    // };
 
-    console.log(postContent);
+    // console.log(postContent);
 
     // create a requestOption (which is POST request) to upload our post
     // fetch(URL, requestionOption)
@@ -263,11 +268,7 @@ const Post = () => {
                     </label>
                   </div>
                   <div className='col-6 d-flex justify-content-end'>
-                    <button
-                      type='submit'
-                      className='btn post-btn me-5'
-                      onClick={handleSubmit}
-                    >
+                    <button type='submit' className='btn post-btn me-5'>
                       Post
                     </button>
                   </div>
