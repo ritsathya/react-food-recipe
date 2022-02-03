@@ -84,7 +84,7 @@ const Profile = () => {
                   className='btn btn-login'
                   onClick={() => {
                     setContextUser(null);
-                    navigate('../', { replace: true });
+                    navigate('/login');
                   }}
                 >
                   Logout
