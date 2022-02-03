@@ -72,7 +72,7 @@ function App() {
               path="/profile"
               element={contextUser ? <Profile /> : <Navigate to="/login" />}
             />
-            <Route path="/view" element={recipes && <View data={recipes} />} />
+            <Route path="/view" element={recipes && <View data={recipes} user={contextUser}/>} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </UserContext.Provider>

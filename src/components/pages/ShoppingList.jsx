@@ -1,4 +1,6 @@
 import React from "react";
+
+import CardItem from "../CardItem";
 import Navbar from "../Navbar";
 
 export default function ShoppingList({recipe}) {
@@ -32,10 +34,22 @@ export default function ShoppingList({recipe}) {
             </div>
           ))}
         </div>
-        <button className="btn print-button">
-          <i className="fa-solid fa-print" />
-          <b>Print</b>
-        </button>
+        <div className="d-flex flex-column">
+          <button className="btn print-button">
+            <i className="fa-solid fa-print" />
+            <b>Print</b>
+          </button>
+          <div className="card_item_in_shopping mt-3">
+            <CardItem
+                key={lists[0].id}
+                src={lists[0].imgSrc}
+                text={lists[0].recipeName}
+                label={lists[0].tag}
+                duration={lists[0].duration}
+                path={`/view/?id=${lists[0].id}`}
+            />
+          </div>
+        </div>
       </div>
     </>
   );

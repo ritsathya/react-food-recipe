@@ -642,6 +642,18 @@ h2 > i {
   max-width: 200px;
 }
 
+.card_item_in_shopping > *{
+  max-height: 300px;
+  max-width: 200px;
+}
+
+.delete_list_button{
+  position: absolute;
+  z-index: 1;
+  color: white;
+  background-color: red;
+}
+
 @media only screen and (min-width: 1200px) {
   .content__blog__container {
     width: 84%;
