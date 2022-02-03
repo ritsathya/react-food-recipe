@@ -8,15 +8,23 @@ const Post = () => {
   // let navigate = useNavigate();
 
   const { contextUser } = useContext(UserContext);
-  const [duration, setDuration] = useState(0);
   const [title, setTitle] = useState('');
-  const [foodType, setFoodType] = useState([]);
   const [desc, setDesc] = useState('');
   const [ingre, setIngre] = useState('');
   const [direction, setDirection] = useState('');
-  const [flavours, setFlavours] = useState([]);
+  const [duration, setDuration] = useState(0);
   const [selectedFile, setSelectedFile] = useState(null);
   const [imgSrc, setImgSrc] = useState(null);
+  const [foodType, setFoodType] = useState([]);
+  const [flavours, setFlavours] = useState([]);
+
+  const handleCheck = (e) => {
+    if (e.target.checked && !foodType.includes(e.target.value)) {
+      setFoodType([...foodType, e.target.value]);
+    } else if (foodType.includes(e.target.value)) {
+      setFoodType(foodType.filter((value) => !value.includes(e.target.value)));
+    }
+  };
 
   const uploadImg = (img) => {
     if (!img) return;
@@ -40,7 +48,7 @@ const Post = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    uploadImg(selectedFile);
+    // uploadImg(selectedFile);
 
     const postContent = {
       recipeName: title,
@@ -54,7 +62,7 @@ const Post = () => {
       imgSrc: imgSrc,
     };
 
-    // console.log(postContent);
+    console.log(postContent);
 
     /* uncomment the following code to post the submitted content to server */
 
@@ -121,7 +129,8 @@ const Post = () => {
                       className='form-check-input'
                       type='checkbox'
                       id='breakfastBox'
-                      onChange={(e) => console.log(e.target.name)}
+                      value='breakfast'
+                      onChange={(e) => handleCheck(e)}
                     />
                   </div>
                   <div className='form-check ms-4'>
@@ -132,6 +141,8 @@ const Post = () => {
                       className='form-check-input'
                       type='checkbox'
                       id='lunchBox'
+                      value='lunch'
+                      onChange={(e) => handleCheck(e)}
                     />
                   </div>
                   <div className='form-check ms-4'>
@@ -142,6 +153,8 @@ const Post = () => {
                       className='form-check-input'
                       type='checkbox'
                       id='dinnerBox'
+                      value='dinner'
+                      onChange={(e) => handleCheck(e)}
                     />
                   </div>
                   <div className='form-check ms-4'>
@@ -152,6 +165,8 @@ const Post = () => {
                       className='form-check-input'
                       type='checkbox'
                       id='snackBox'
+                      value='snack'
+                      onChange={(e) => handleCheck(e)}
                     />
                   </div>
                   <div className='form-check ms-4'>
@@ -162,6 +177,8 @@ const Post = () => {
                       className='form-check-input'
                       type='checkbox'
                       id='dessertBox'
+                      value='dessert'
+                      onChange={(e) => handleCheck(e)}
                     />
                   </div>
                 </div>
