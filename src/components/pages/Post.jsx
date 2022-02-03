@@ -3,9 +3,10 @@ import { UserContext } from '../../UserContext';
 import Navbar from '../Navbar';
 import { storage } from '../../firebase';
 import { getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage';
+import { useNavigate } from 'react-router-dom';
 
 const Post = () => {
-  // let navigate = useNavigate();
+  const navigate = useNavigate();
 
   const { contextUser } = useContext(UserContext);
   const [title, setTitle] = useState('');
@@ -17,12 +18,21 @@ const Post = () => {
   const [imgSrc, setImgSrc] = useState(null);
   const [foodType, setFoodType] = useState([]);
   const [flavours, setFlavours] = useState([]);
+  const [previewImgSrc, setPreviewImgSrc] = useState('');
 
   const handleCheck = (e) => {
     if (e.target.checked && !foodType.includes(e.target.value)) {
       setFoodType([...foodType, e.target.value]);
     } else if (foodType.includes(e.target.value)) {
       setFoodType(foodType.filter((value) => !value.includes(e.target.value)));
+    }
+  };
+
+  const handleFlavourCheck = (e) => {
+    if (e.target.checked && !flavours.includes(e.target.value)) {
+      setFlavours([...flavours, e.target.value]);
+    } else if (flavours.includes(e.target.value)) {
+      setFlavours(flavours.filter((value) => !value.includes(e.target.value)));
     }
   };
 
@@ -41,42 +51,110 @@ const Post = () => {
       },
       (err) => console.log(err),
       () => {
-        getDownloadURL(uploadTask.snapshot.ref).then((url) => setImgSrc(url));
+        getDownloadURL(uploadTask.snapshot.ref).then((url) => {
+          // setImgSrc(url);
+          const postContent = {
+            recipeName: title,
+            tag: foodType,
+            description: desc,
+            ingredients: ingre.split('\n'),
+            directions: direction.split('\n'),
+            flavour: flavours,
+            duration: +duration,
+            userID: contextUser[0].id,
+            imgSrc: url,
+          };
+
+          const requestOption = {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(postContent),
+          };
+          fetch(
+            'https://foodie-fake-rest-api.herokuapp.com/meals',
+            requestOption
+          )
+            .then((res) => res.json())
+            .then((data) => {
+              if (
+                data &&
+                window.confirm(
+                  'Content has been uploaded. Do you want to visit your profile?'
+                )
+              ) {
+                navigate('/profile');
+              } else {
+                setTitle('');
+                setDesc('');
+                setIngre('');
+                setDirection('');
+                setSelectedFile(null);
+                setDuration(0);
+              }
+            });
+        });
       }
     );
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // uploadImg(selectedFile);
+  const readURL = (input) => {
+    const file = input.target.files[0];
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
 
-    const postContent = {
-      recipeName: title,
-      tag: foodType,
-      description: desc,
-      ingredients: ingre,
-      directions: direction,
-      flavour: flavours,
-      duration: duration,
-      userID: contextUser[0].id,
-      imgSrc: imgSrc,
+    reader.onloadend = (e) => {
+      setPreviewImgSrc(reader.result);
     };
 
-    console.log(postContent);
+    setSelectedFile(file);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (title === '' || desc === '' || ingre === '' || direction === '') return;
+    uploadImg(selectedFile);
+
+    // const postContent = {
+    //   recipeName: title,
+    //   tag: foodType,
+    //   description: desc,
+    //   ingredients: ingre.split('\n'),
+    //   directions: direction.split('\n'),
+    //   flavour: flavours,
+    //   duration: +duration,
+    //   userID: contextUser[0].id,
+    //   imgSrc: imgSrc,
+    // };
+
+    // console.log(postContent);
+    // return;
 
     /* uncomment the following code to post the submitted content to server */
 
     /* create a requestOption (which is POST request) to upload our post */
-
     // const requestOption = {
     //   method: 'POST',
     //   headers: { 'Content-Type': 'application/json' },
     //   body: JSON.stringify(postContent),
     // };
-    // fetch('https://foodie-fake-rest-api.herokuapp.com/meals', requestionOption)
+    // fetch('https://foodie-fake-rest-api.herokuapp.com/meals', requestOption)
     //   .then((res) => res.json())
     //   .then((data) => {
-    //     console.log(data);
+    //     if (
+    //       data &&
+    //       window.confirm(
+    //         'Content has been uploaded. Do you want to visit your profile?'
+    //       )
+    //     ) {
+    //       navigate('/profile');
+    //     } else {
+    //       setTitle('');
+    //       setDesc('');
+    //       setIngre('');
+    //       setDirection('');
+    //       setSelectedFile(null);
+    //       setDuration(0);
+    //     }
     //   });
   };
   return (
@@ -86,15 +164,23 @@ const Post = () => {
         <form onSubmit={handleSubmit}>
           <div className='row'>
             <div className='col-3'>
-              <div className='pic'>
-                <div className='m-4'>
-                  <label htmlFor='img'>Add Image: </label>
+              <div className='pic-section'>
+                <div className='ms-4 mt-4'>
+                  <img
+                    style={{ width: '300px', marginBottom: '10px' }}
+                    src={
+                      previewImgSrc
+                        ? previewImgSrc
+                        : 'http://www.vvc.cl/wp-content/uploads/2016/09/ef3-placeholder-image.jpg'
+                    }
+                    alt='preview'
+                  />
                   <input
                     type='file'
                     id='img'
                     name='img'
                     accept='image/*'
-                    onChange={(e) => setSelectedFile(e.target.files[0])}
+                    onChange={(e) => readURL(e)}
                   />
                 </div>
               </div>
@@ -192,6 +278,8 @@ const Post = () => {
                       className='form-check-input'
                       type='checkbox'
                       id='sweetBox'
+                      value='sweet'
+                      onChange={(e) => handleFlavourCheck(e)}
                     />
                   </div>
                   <div className='form-check ms-4'>
@@ -202,6 +290,8 @@ const Post = () => {
                       className='form-check-input'
                       type='checkbox'
                       id='saltyBox'
+                      value='salty'
+                      onChange={(e) => handleFlavourCheck(e)}
                     />
                   </div>
                   <div className='form-check ms-4'>
@@ -212,6 +302,8 @@ const Post = () => {
                       className='form-check-input'
                       type='checkbox'
                       id='sourBox'
+                      value='sour'
+                      onChange={(e) => handleFlavourCheck(e)}
                     />
                   </div>
                   <div className='form-check ms-4'>
@@ -222,6 +314,8 @@ const Post = () => {
                       className='form-check-input'
                       type='checkbox'
                       id='bitterBox'
+                      value='bitter'
+                      onChange={(e) => handleFlavourCheck(e)}
                     />
                   </div>
                   <div className='form-check ms-4'>
@@ -232,6 +326,8 @@ const Post = () => {
                       className='form-check-input'
                       type='checkbox'
                       id='spicyBox'
+                      value='spicy'
+                      onChange={(e) => handleFlavourCheck(e)}
                     />
                   </div>
                 </div>
