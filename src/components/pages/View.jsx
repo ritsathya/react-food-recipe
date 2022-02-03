@@ -73,8 +73,10 @@ const View = ({ data }) => {
   }, []);
 
   const fetchRecipes = () => {
-    const recipe = data.filter((i) => i.id === parseInt(param));
-    setRecipe(recipe);
+    // const recipe = data.filter((i) => i.id === parseInt(param));
+    const recipe = fetch(`${URL}/meals?id=${param}`)
+      .then((res) => res.json())
+      .then((data) => setRecipe(data));
   };
 
   const handleClick = () => {
@@ -92,15 +94,15 @@ const View = ({ data }) => {
       return ingredients.map((ingredient) => (
         <li key={++i} className='ingredients'>
           <input type='checkbox' id={`box${i}`} />
-          <label htmlFor={`box${i}`}>{ingredient.ingredientName}</label>
+          <label htmlFor={`box${i}`}>{ingredient}</label>
         </li>
       ));
     }
   };
 
   const getDirection = () => {
-    if (recipe && recipe[0].direction) {
-      const directions = recipe[0].direction;
+    if (recipe && recipe[0].directions) {
+      const directions = recipe[0].directions;
       let i = 0;
       return directions.map((direction) => (
         <li key={++i} className='directions'>
