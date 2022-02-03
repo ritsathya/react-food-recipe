@@ -55,9 +55,15 @@ function App() {
             />
             <Route path="/result" element={<Result />} />
             <Route
-              path="/shoppingList"
+              path="/favRecipeList"
               element={
                 contextUser ? <FavRecipeList user={contextUser} recipes={recipes} /> : <Navigate to="/login" />
+              }
+            />
+            <Route
+              path="/shoppingList"
+              element={
+                recipes && <ShoppingList recipe={recipes} />
               }
             />
             <Route path="/login" element={<Login />} />

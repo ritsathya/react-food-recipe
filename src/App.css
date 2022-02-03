@@ -254,16 +254,16 @@ h2 > i {
 }
 
 .shopping-list-page {
-  height: 100vh;
   background-color: #d9f0cb;
+  min-height: 100vh;
 }
 
 .shopping-list-contaienr {
+  margin-top: 10px;
   border-radius: 0.5rem;
   background-color: var(--lightColor);
   width: 40%;
-  margin-top: 1rem;
-  margin-bottom: 1rem;
+  min-height: 300px;
 }
 
 .print-button {
@@ -287,18 +287,6 @@ h2 > i {
 .form-check-label {
   margin-top: -0.2rem;
   font-size: 1.5rem;
-}
-
-.Shopping-list-page {
-  height: 100vh;
-  background-color: #d9f0cb;
-}
-
-.Shopping-List-Contaienr {
-  border-radius: 0.5rem;
-  background-color: white;
-  width: 40%;
-  margin-top: 1rem;
 }
 
 .Print-button {

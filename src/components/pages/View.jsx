@@ -265,6 +265,26 @@ const View = ({ data }) => {
       });
   };
 
+  const favoriteRecipeListId = data.id;
+  const addToFavoriteList = (favoriteRecipeListId) => {
+    const requestOption = {
+      method: 'PATCH',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        fav_recipe_id: favoriteRecipeListId,
+      }),
+    };
+  }
+
+  const deleteFromFavoriteList = (favoriteRecipeListId) => {
+    const requestOption = {
+      method: 'PATCH',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        fav_recipe_id: favoriteRecipeListId,
+      }),
+    };
+  }
   return (
     <>
       <Navbar path='/view' />

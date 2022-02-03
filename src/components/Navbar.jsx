@@ -38,7 +38,7 @@ const Navbar = (props) => {
             <div className="navbar-nav gap-3">
               <Link
                 className={props.path !== "/" ? "d-none" : "btn btn-edit"}
-                to="/shoppingList"
+                to="/favRecipeList"
               >
                 <i className="fas fa-tasks" />
               </Link>
