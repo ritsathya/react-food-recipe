@@ -55,7 +55,10 @@ function App() {
               path='/profile'
               element={contextUser ? <Profile /> : <Navigate to='/login' />}
             />
-            <Route path='/post' element={<Post />} />
+            <Route
+              path='/post'
+              element={contextUser ? <Post /> : <Navigate to='/login' />}
+            />
             <Route path='/view' element={recipes && <View data={recipes} />} />
             <Route path='*' element={<NotFound />} />
           </Routes>

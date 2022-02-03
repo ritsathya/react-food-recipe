@@ -2,6 +2,7 @@ import React, { useContext, useState } from 'react';
 import { UserContext } from '../../UserContext';
 import Navbar from '../Navbar';
 import { storage } from '../../firebase';
+import { getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage';
 
 const Post = () => {
   // let navigate = useNavigate();
@@ -15,31 +16,56 @@ const Post = () => {
   const [direction, setDirection] = useState('');
   const [flavours, setFlavours] = useState([]);
   const [selectedFile, setSelectedFile] = useState(null);
+  const [imgSrc, setImgSrc] = useState(null);
 
   const uploadImg = (img) => {
-    // logic goes here
+    if (!img) return;
+    const storageRef = ref(storage, `/images/${img.name}`);
+    const uploadTask = uploadBytesResumable(storageRef, img);
+
+    uploadTask.on(
+      'state_changed',
+      (snapshot) => {
+        const prog = Math.round(
+          (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+        );
+        console.log(prog);
+      },
+      (err) => console.log(err),
+      () => {
+        getDownloadURL(uploadTask.snapshot.ref).then((url) => setImgSrc(url));
+      }
+    );
   };
 
   const handleSubmit = (e) => {
-    console.log(e.target[0].file[0]);
     e.preventDefault();
+    uploadImg(selectedFile);
 
-    // const postContent = {
-    //   recipeName: title,
-    //   tag: foodType,
-    //   description: desc,
-    //   ingredients: ingre,
-    //   directions: direction,
-    //   flavour: flavours,
-    //   duration: duration,
-    //   userID: contextUser[0].id,
-    //   imgSrc: selectedFile,
-    // };
+    const postContent = {
+      recipeName: title,
+      tag: foodType,
+      description: desc,
+      ingredients: ingre,
+      directions: direction,
+      flavour: flavours,
+      duration: duration,
+      userID: contextUser[0].id,
+      imgSrc: imgSrc,
+    };
 
     // console.log(postContent);
 
-    // create a requestOption (which is POST request) to upload our post
-    // fetch(URL, requestionOption)
+    /* uncomment the following code to post the submitted content to server */
+
+    /* create a requestOption (which is POST request) to upload our post */
+
+    // const requestOption = {
+    //   method: 'POST',
+    //   headers: { 'Content-Type': 'application/json' },
+    //   body: JSON.stringify(postContent),
+    // };
+    // fetch('https://foodie-fake-rest-api.herokuapp.com/meals', requestionOption)
     //   .then((res) => res.json())
     //   .then((data) => {
     //     console.log(data);
@@ -55,7 +81,13 @@ const Post = () => {
               <div className='pic'>
                 <div className='m-4'>
                   <label htmlFor='img'>Add Image: </label>
-                  <input type='file' id='img' name='img' accept='image/*' />
+                  <input
+                    type='file'
+                    id='img'
+                    name='img'
+                    accept='image/*'
+                    onChange={(e) => setSelectedFile(e.target.files[0])}
+                  />
                 </div>
               </div>
               <div className='cook-info post__form m-4'>
@@ -89,6 +121,7 @@ const Post = () => {
                       className='form-check-input'
                       type='checkbox'
                       id='breakfastBox'
+                      onChange={(e) => console.log(e.target.name)}
                     />
                   </div>
                   <div className='form-check ms-4'>
