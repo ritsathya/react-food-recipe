@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { Modal, Button, Form } from 'react-bootstrap';
 
-import { deleteFromFavoriteList } from '../../utility'
+import { deleteFromFavoriteList } from '../../utility';
 import Navbar from '../Navbar';
 import GetRecommend from '../GetRecommend';
 import Footer from '../Footer';
@@ -18,6 +18,7 @@ const View = ({ data, user }) => {
   const [showModal, setShowModal] = useState(false);
   const [report, setReport] = useState(false);
   const [reportBox, setReportBox] = useState('');
+  const [favRecipe, setFavRecipe] = useState(null);
 
   const id = useLocation().search;
   const param = id.slice(4).replace('+', ' ');
@@ -67,7 +68,13 @@ const View = ({ data, user }) => {
         .then((reports) => {
           if (reports.length > 0) setReport(true);
         });
-      if (contextUser[0].fav_recipe_id.includes(+param)) setHeart(true);
+
+      fetch(`${URL}/users/${contextUser[0].id}`)
+        .then((res) => res.json())
+        .then((data) => {
+          if (data.fav_recipe_id.includes(+param)) setHeart(true);
+          setFavRecipe(data.fav_recipe_id);
+        });
     }
 
     fetchRecipes();
@@ -82,29 +89,31 @@ const View = ({ data, user }) => {
   };
 
   const handleClick = () => {
-    
     if (!contextUser) navigate('/login');
 
     setHeart(!heart);
     let temp = heart;
     temp = !temp;
-    
-    if(temp){
-      contextUser[0].fav_recipe_id.push(+param);
+
+    if (temp) {
+      // contextUser[0].fav_recipe_id.push(+param);
+      const newFavRecipe = [...favRecipe, +param];
+      setFavRecipe(newFavRecipe);
       const requestOption = {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          fav_recipe_id: contextUser[0].fav_recipe_id,
+          fav_recipe_id: newFavRecipe,
         }),
       };
 
-      fetch(`${URL}/users/${contextUser[0].id}`, requestOption)
-        .then((res) => res.json())
-        .then((data) => {});
-
-    }else{
-      deleteFromFavoriteList(contextUser[0].id, +param, contextUser[0].fav_recipe_id);
+      fetch(`${URL}/users/${contextUser[0].id}`, requestOption).then((res) =>
+        res.json()
+      );
+    } else {
+      const newFavRecipe = favRecipe.filter((data) => data !== +param);
+      setFavRecipe(newFavRecipe);
+      deleteFromFavoriteList(contextUser[0].id, newFavRecipe);
     }
   };
 

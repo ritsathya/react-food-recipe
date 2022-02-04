@@ -1,53 +1,86 @@
-import React, { PropTypes, Component,useState, useContext } from 'react'
+import React, {
+  PropTypes,
+  Component,
+  useState,
+  useContext,
+  useEffect,
+} from 'react';
 import { UserContext } from '../../UserContext';
 
-import { deleteFromFavoriteList } from '../../utility'
-import CardItem from "../CardItem";
-import Navbar from "../Navbar";
+import { deleteFromFavoriteList } from '../../utility';
+import CardItem from '../CardItem';
+import Navbar from '../Navbar';
 import NotFound from '../NotFound';
 
-export default function FavRecipeList({user, recipes}) {
+export default function FavRecipeList({ recipes }) {
+  const { contextUser, setContextUser } = useContext(UserContext);
+  const [favRecipe, setFavRecipe] = useState(null);
+  const [lists, setLists] = useState(null);
 
-  const { contextUser } = useContext(UserContext);
-  const favRecipe = contextUser[0].fav_recipe_id;
-  let lists = Object.values(recipes).filter(element => favRecipe.includes(element.id));
+  useEffect(() => {
+    const URL = `https://foodie-fake-rest-api.herokuapp.com`;
+    fetch(URL.concat('/users/', contextUser[0].id))
+      .then((res) => res.json())
+      .then((data) => setFavRecipe(data.fav_recipe_id));
+  }, []);
 
-  function reRender(listId){
-    deleteFromFavoriteList(contextUser[0].id, listId, user[0].fav_recipe_id);
+  useEffect(() => {
+    const filterList = recipes.filter(
+      ({ id: id1 }) => favRecipe && favRecipe.some((id2) => id1 === id2)
+    );
+
+    setLists(filterList);
+  }, [favRecipe]);
+
+  function reRender(listId) {
+    const newFavRecipe = favRecipe.filter((data) => data !== listId);
+    setFavRecipe(newFavRecipe);
+    deleteFromFavoriteList(contextUser[0].id, newFavRecipe);
   }
 
   const checkList = () => {
-    return(
-      lists.map((list) => (
-        <>
+    if (lists.length == 0)
+      return (
         <div>
-          <button type="button" class="delete_list_button rounded-circle">
-            <i class="fa fa-minus" aria-hidden="true" onClick={reRender(list.id)}></i>
-          </button>
-          <CardItem
-            key={list.id}
-            src={list.imgSrc}
-            text={list.recipeName}
-            label={list.tag}
-            duration={list.duration}
-            path={`/shoppingList/?id=${list.id}`}
+          <img
+            src='https://i.pinimg.com/originals/ae/8a/c2/ae8ac2fa217d23aadcc913989fcc34a2.png'
+            alt='empty list'
           />
         </div>
-        </>
-      ))
-    )
-  }
-
-  return(
-    <>
-    <div className={lists.length !== 0 ? '' : 'd-none'}>
-      <Navbar path="/favRecipeList" />
-    </div>
-    {lists.length !== 0 ?
-      <div className='favorite_recipe_list d-flex mt-4'>
-        {checkList()}
+      );
+    return lists.map((list) => (
+      <div key={list.id}>
+        <button
+          type='button'
+          className='delete_list_button'
+          onClick={() => reRender(list.id)}
+        >
+          <i className='fa fa-minus' aria-hidden='true'></i>
+        </button>{' '}
+        <CardItem
+          key={list.id}
+          src={list.imgSrc}
+          text={list.recipeName}
+          label={list.tag}
+          duration={list.duration}
+          path={`/shoppingList/?id=${list.id}`}
+        />
       </div>
-     : <NotFound/>}
+    ));
+  };
+
+  return (
+    <>
+      <div className={lists ? '' : 'd-none'}>
+        <Navbar path='/favRecipeList' />
+      </div>
+      {lists ? (
+        <div className='favorite_recipe_list grid'>{checkList()}</div>
+      ) : (
+        <div className='flex-center'>
+          <h2>List is empty</h2>
+        </div>
+      )}
     </>
   );
 }

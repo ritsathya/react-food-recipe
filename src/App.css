@@ -260,10 +260,13 @@ h2 > i {
 
 .shopping-list-contaienr {
   margin-top: 10px;
+  margin-bottom: 10px;
+  padding-bottom: 80px;
   border-radius: 0.5rem;
   background-color: var(--lightColor);
   width: 40%;
-  min-height: 300px;
+  height: fit-content;
+  /* min-height: 300px; */
 }
 
 .print-button {
@@ -688,7 +691,7 @@ h2 > i {
 
 .favorite_recipe_list > * {
   max-height: 300px;
-  max-width: 200px;
+  max-width: 240px;
 }
 
 .card_item_in_shopping > * {
@@ -701,6 +704,14 @@ h2 > i {
   z-index: 1;
   color: white;
   background-color: red;
+  border: 1px solid var(--darkColor);
+  border-radius: 50%;
+  margin-top: -10px;
+  margin-left: 210px;
+}
+
+.rounded-circle {
+  transform: scale(3);
 }
 
 @media only screen and (min-width: 1200px) {
