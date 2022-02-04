@@ -1,66 +1,55 @@
 import React from "react";
+
+import CardItem from "../CardItem";
 import Navbar from "../Navbar";
 
-const lists = [
-  {
-    id: 1,
-    text: "2kg Wheat Flour",
-  },
-  {
-    id: 2,
-    text: "12 Eggs",
-  },
-  {
-    id: 3,
-    text: "300g Milk Powder",
-  },
-  {
-    id: 4,
-    text: "200g Dark Chocolate",
-  },
-  {
-    id: 5,
-    text: "10g Baking Soda",
-  },
-  {
-    id: 6,
-    text: "10ml Vanilla Extract",
-  },
-  {
-    id: 7,
-    text: "100ml Full Cream Milk",
-  },
-];
+export default function ShoppingList({recipe}) {
+  
+  const url = window.location.href;
+  const id = url.charAt(url.length - 1);
 
-export default function ShoppingList() {
+  const lists = Object.values(recipe).filter(element => element.id === +id);
+
   return (
     <>
       <Navbar path="/shopping" />
       <div className="shopping-list-page flex jc-center">
-        <div className="shopping-list-contaienr py-4">
+        <div className="shopping-list-contaienr">
           <h2>
             <b>Shopping List</b>
           </h2>
-          {lists.map((list) => (
-            <div key={list.id} className="form-check m-5">
+          {lists[0].ingredients.map((list) => (
+            <div key={lists.id} className="form-check m-5 flex ai-center">
               <input
                 type="checkbox"
                 className="form-check-input rounded-circle"
-                id={`exampleCheck${list.id}`}
+                id={`exampleCheck${lists.id}`}
               />
               <label
-                className="form-check-label"
-                htmlFor={`exampleCheckkey=${list.id}`}
+                className="form-check-label d-inline-block mt-3"
+                htmlFor={`exampleCheckkey=${lists.id}`}
               >
-                {list.text}
+                {list.ingredientName}
               </label>
             </div>
           ))}
         </div>
-        <button className="btn print-button">
-          <i className="fa-solid fa-print" />
-          <b>Print</b>
-        </button>
+        <div className="d-flex flex-column">
+          <button className="btn print-button">
+            <i className="fa-solid fa-print" />
+            <b>Print</b>
+          </button>
+          <div className="card_item_in_shopping mt-3">
+            <CardItem
+                key={lists[0].id}
+                src={lists[0].imgSrc}
+                text={lists[0].recipeName}
+                label={lists[0].tag}
+                duration={lists[0].duration}
+                path={`/view/?id=${lists[0].id}`}
+            />
+          </div>
+        </div>
       </div>
     </>
   );

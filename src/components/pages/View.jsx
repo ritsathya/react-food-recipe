@@ -2,16 +2,18 @@ import React, { useState, useEffect, useContext } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { Modal, Button, Form } from 'react-bootstrap';
 
+import { deleteFromFavoriteList } from '../../utility'
 import Navbar from '../Navbar';
 import GetRecommend from '../GetRecommend';
 import Footer from '../Footer';
 import { UserContext } from '../../UserContext';
 
-const View = ({ data }) => {
+const View = ({ data, user }) => {
   const URL = `https://foodie-fake-rest-api.herokuapp.com`;
   const { contextUser } = useContext(UserContext);
   const navigate = useNavigate();
   const stars = [1, 2, 3, 4, 5];
+  const [heart, setHeart] = useState(false);
   const [starValue, setStarValue] = useState(0);
   const [showModal, setShowModal] = useState(false);
   const [report, setReport] = useState(false);
@@ -23,7 +25,6 @@ const View = ({ data }) => {
   const [users, setUsers] = useState(null);
   const [comments, setComments] = useState(null);
   const [replies, setReplies] = useState(null);
-  const [click, setClick] = useState(false);
   const [clickID, setClickID] = useState(0);
   const [isReplyClick, setIsReplyClick] = useState(false);
   const [textArea, setTextArea] = useState('');
@@ -66,6 +67,7 @@ const View = ({ data }) => {
         .then((reports) => {
           if (reports.length > 0) setReport(true);
         });
+      if (contextUser[0].fav_recipe_id.includes(+param)) setHeart(true);
     }
 
     fetchRecipes();
@@ -80,7 +82,30 @@ const View = ({ data }) => {
   };
 
   const handleClick = () => {
-    setClick(!click);
+    
+    if (!contextUser) navigate('/login');
+
+    setHeart(!heart);
+    let temp = heart;
+    temp = !temp;
+    
+    if(temp){
+      contextUser[0].fav_recipe_id.push(+param);
+      const requestOption = {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          fav_recipe_id: contextUser[0].fav_recipe_id,
+        }),
+      };
+
+      fetch(`${URL}/users/${contextUser[0].id}`, requestOption)
+        .then((res) => res.json())
+        .then((data) => {});
+
+    }else{
+      deleteFromFavoriteList(contextUser[0].id, +param, contextUser[0].fav_recipe_id);
+    }
   };
 
   const getDescription = () => {
@@ -340,8 +365,8 @@ const View = ({ data }) => {
             </Modal.Footer>
           </Modal>
           <i
-            className={`${click ? 'fa-solid' : 'fa-regular'} fa-heart m-2 mx-4`}
-            style={{ color: `${click ? 'red' : 'black'}`, cursor: 'pointer' }}
+            className={`${heart ? 'fa-solid' : 'fa-regular'} fa-heart m-2 mx-4`}
+            style={{ color: `${heart ? 'red' : 'black'}`, cursor: 'pointer' }}
             onClick={handleClick}
           />
         </div>
