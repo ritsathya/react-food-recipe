@@ -1,25 +1,25 @@
-import React, { useEffect, useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
-import Footer from "../Footer";
-import Navbar from "../Navbar";
-import ResultRecipe from "../ResultRecipe";
+import React, { useEffect, useState } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
+import Footer from '../Footer';
+import Navbar from '../Navbar';
+import ResultRecipe from '../ResultRecipe';
 
 const Result = () => {
   const URL = `https://foodie-fake-rest-api.herokuapp.com/meals`;
   const search = useLocation().search;
   let navigate = useNavigate();
 
-  const [param, setParam] = useState(search.slice(8).replace("+", " "));
+  const [param, setParam] = useState(search.slice(8).replace('+', ' '));
   const [text, setText] = useState(param);
-  const [inclusion, setInclusion] = useState("");
-  const [exclusion, setExclusion] = useState("");
-  const [foodType, setFoodType] = useState("");
+  const [inclusion, setInclusion] = useState('');
+  const [exclusion, setExclusion] = useState('');
+  const [foodType, setFoodType] = useState('');
   const [recipes, setRecipes] = useState([]);
-  const [flavour, setFlavour] = useState("normal");
+  const [flavour, setFlavour] = useState('normal');
 
   useEffect(() => {
     // get all recipes for initial page load
-    fetch(URL.concat("?q=", param))
+    fetch(URL.concat('?q=', param))
       .then((res) => {
         return res.json();
       })
@@ -34,14 +34,14 @@ const Result = () => {
     let filterURL = URL;
 
     // filter recipes
-    if (inclusion !== "") {
-      filterURL = filterURL.concat("?recipeName_like=", text, "&q=", inclusion);
+    if (inclusion !== '') {
+      filterURL = filterURL.concat('?recipeName_like=', text, '&q=', inclusion);
     } else {
-      filterURL = filterURL.concat("?q=", text);
+      filterURL = filterURL.concat('?q=', text);
     }
-    if (flavour !== "normal")
-      filterURL = filterURL.concat("&flavour=", flavour);
-    if (foodType !== "") filterURL = filterURL.concat("&tag_like=", foodType);
+    if (flavour !== 'normal')
+      filterURL = filterURL.concat('&flavour_like=', flavour);
+    if (foodType !== '') filterURL = filterURL.concat('&tag_like=', foodType);
 
     fetch(filterURL)
       .then((res) => {
@@ -51,8 +51,8 @@ const Result = () => {
         setRecipes(data);
 
         // filter recipes by excluding ingredient
-        if (exclusion !== "") {
-          fetch(URL.concat("?q=", exclusion))
+        if (exclusion !== '') {
+          fetch(URL.concat('?q=', exclusion))
             .then((res) => {
               return res.json();
             })
@@ -66,66 +66,68 @@ const Result = () => {
       });
 
     // update website url
-    navigate(`/result/?search=${param.replace(" ", "+")}`);
+    navigate(`/result/?search=${param.replace(' ', '+')}`);
   };
 
   return (
     <>
       <Navbar />
       <h2>Find a recipe</h2>
-      <div className="input-group wrapper">
+      <div className='input-group wrapper'>
         <input
-          className="form-control fe-shadow"
-          type="text"
-          placeholder="find a recipe"
+          className='form-control fe-shadow'
+          type='text'
+          placeholder='find a recipe'
           value={text}
           onChange={(e) => {
             setText(e.target.value);
             setParam(e.target.value);
           }}
         />
-        <button className="btn btn-search" type="button" onClick={handleSearch}>
-          <i className="fas fa-search"></i>
+        <button className='btn btn-search' type='button' onClick={handleSearch}>
+          <i className='fas fa-search'></i>
         </button>
       </div>
-      <div className="flex-center">
-        <div className="search-filter">
+      <div className='flex-center'>
+        <div className='search-filter'>
           <input
-            type="text"
-            id="include"
-            placeholder="include ingredients"
+            type='text'
+            id='include'
+            placeholder='include ingredients'
             value={inclusion}
             onChange={(e) => setInclusion(e.target.value)}
           />
           <input
-            type="text"
-            id="exclude"
-            placeholder="exclude ingredients"
+            type='text'
+            id='exclude'
+            placeholder='exclude ingredients'
             value={exclusion}
             onChange={(e) => setExclusion(e.target.value)}
           />
           <input
-            type="text"
-            id="type"
-            placeholder="type of food"
+            type='text'
+            id='type'
+            placeholder='type of food'
             value={foodType}
             onChange={(e) => setFoodType(e.target.value)}
           />
           <select
-            id="flavours"
+            id='flavours'
             value={flavour}
             onChange={(e) => setFlavour(e.target.value)}
           >
-            <option value="normal">Filter by flavours</option>
-            <option value="spicy">Spicy</option>
-            <option value="sweet">Sweet</option>
-            <option value="salty">Salty</option>
+            <option value='normal'>Filter by flavours</option>
+            <option value='spicy'>Spicy</option>
+            <option value='sweet'>Sweet</option>
+            <option value='salty'>Salty</option>
+            <option value='sour'>Sour</option>
+            <option value='bitter'>Bitter</option>
           </select>
         </div>
       </div>
-      <div className="result">
-        <p style={{ textAlign: "center" }}>Total result: {recipes.length}</p>
-        <ul className="grid">
+      <div className='result'>
+        <p style={{ textAlign: 'center' }}>Total result: {recipes.length}</p>
+        <ul className='grid'>
           {recipes && <ResultRecipe recipes={recipes} />}
         </ul>
       </div>
