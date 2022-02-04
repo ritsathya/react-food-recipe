@@ -37,13 +37,13 @@ const Navbar = (props) => {
           >
             <div className='navbar-nav gap-3'>
               <Link
-                className={props.path !== "/" ? "d-none" : "btn btn-edit"}
-                to="/favRecipeList"
+                className={props.path === '/login' ? 'd-none' : 'btn btn-edit'}
+                to='/favRecipeList'
               >
                 <i className='fas fa-tasks' />
               </Link>
               <Link
-                className={props.path !== '/' ? 'd-none' : 'btn btn-post'}
+                className={props.path === '/login' ? 'd-none' : 'btn btn-post'}
                 to='/post'
               >
                 <i className='fas fa-edit' />
