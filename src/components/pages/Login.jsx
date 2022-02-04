@@ -15,6 +15,12 @@ const Login = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    // e.preventDefault() doesn't work, so this is manual error trap
+    if (user === '' || password === '') {
+      alert('Please enter provide the correct crediential');
+      return;
+    }
+
     let fetchURL = 'https://foodie-fake-rest-api.herokuapp.com/users';
 
     fetchURL = +user
@@ -26,10 +32,27 @@ const Login = () => {
         return res.json();
       })
       .then((users) => {
-        setIsUser(users.length >= 1);
-        setIsPass(users.some((user) => user.password === password));
+        let userFlag = false;
+        let passFlag = false;
 
-        if (isUser && isPass) {
+        if (users.length == 0) {
+          userFlag = false;
+          setIsUser(false);
+          return;
+        } else {
+          userFlag = true;
+          setIsUser(true);
+        }
+
+        if (users[0].password === password) {
+          passFlag = true;
+          setIsPass(true);
+        } else {
+          passFlag = false;
+          setIsPass(false);
+        }
+
+        if (userFlag && passFlag) {
           setContextUser(users);
           // Go back one page so user can continue task
           navigate(-1);

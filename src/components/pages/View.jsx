@@ -16,6 +16,7 @@ const View = ({ data, user }) => {
   const [heart, setHeart] = useState(false);
   const [starValue, setStarValue] = useState(0);
   const [showModal, setShowModal] = useState(false);
+  const [report, setReport] = useState(false);
   const [reportBox, setReportBox] = useState('');
 
   const id = useLocation().search;
@@ -61,6 +62,11 @@ const View = ({ data, user }) => {
           if (ratings.length > 0) setStarValue(ratings[0].score);
         });
 
+      fetch(`${URL}/reports?userID=${contextUser[0].id}&mealID=${+param}`)
+        .then((res) => res.json())
+        .then((reports) => {
+          if (reports.length > 0) setReport(true);
+        });
       if (contextUser[0].fav_recipe_id.includes(+param)) setHeart(true);
     }
 
@@ -69,8 +75,10 @@ const View = ({ data, user }) => {
   }, []);
 
   const fetchRecipes = () => {
-    const recipe = data.filter((i) => i.id === parseInt(param));
-    setRecipe(recipe);
+    // const recipe = data.filter((i) => i.id === parseInt(param));
+    const recipe = fetch(`${URL}/meals?id=${param}`)
+      .then((res) => res.json())
+      .then((data) => setRecipe(data));
   };
 
   const handleClick = () => {
@@ -111,15 +119,15 @@ const View = ({ data, user }) => {
       return ingredients.map((ingredient) => (
         <li key={++i} className='ingredients'>
           <input type='checkbox' id={`box${i}`} />
-          <label htmlFor={`box${i}`}>{ingredient.ingredientName}</label>
+          <label htmlFor={`box${i}`}>{ingredient}</label>
         </li>
       ));
     }
   };
 
   const getDirection = () => {
-    if (recipe && recipe[0].direction) {
-      const directions = recipe[0].direction;
+    if (recipe && recipe[0].directions) {
+      const directions = recipe[0].directions;
       let i = 0;
       return directions.map((direction) => (
         <li key={++i} className='directions'>
@@ -296,11 +304,15 @@ const View = ({ data, user }) => {
       <div style={{ backgroundColor: '#f6f7f6' }}>
         <div className='flex jc-end fa-2x'>
           <i
-            className='far fa-flag  my-2'
+            className={
+              report ? 'fa-solid fa-flag my-2' : 'fa-regular fa-flag  my-2'
+            }
             style={{ cursor: 'pointer' }}
             onClick={() => {
               if (!contextUser) {
                 window.confirm('Please login to report') && navigate('/login');
+              } else if (report) {
+                alert('Report have been submitted.');
               } else {
                 setShowModal(!showModal);
               }
@@ -329,8 +341,23 @@ const View = ({ data, user }) => {
               <Button
                 variant='warning'
                 onClick={() => {
-                  setReportBox('');
-                  setShowModal(!showModal);
+                  const requestOption = {
+                    method: 'POST',
+                    headers: { 'Content-type': 'application/json' },
+                    body: JSON.stringify({
+                      message: reportBox,
+                      userID: contextUser[0].id,
+                      mealID: +param,
+                    }),
+                  };
+
+                  fetch(`${URL}/reports`, requestOption)
+                    .then((res) => res.json())
+                    .then(() => {
+                      setReport(true);
+                      setReportBox('');
+                      setShowModal(!showModal);
+                    });
                 }}
               >
                 Submit report
