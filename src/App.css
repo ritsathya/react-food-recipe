@@ -686,21 +686,22 @@ h2 > i {
   -moz-box-shadow: none;
 }
 
-.favorite_recipe_list > *{
+.favorite_recipe_list > * {
   max-height: 300px;
   max-width: 200px;
 }
 
-.card_item_in_shopping > *{
+.card_item_in_shopping > * {
   max-height: 300px;
   max-width: 200px;
 }
 
-.delete_list_button{
+.delete_list_button {
   position: absolute;
   z-index: 1;
   color: white;
   background-color: red;
+}
 
 @media only screen and (min-width: 1200px) {
   .content__blog__container {
