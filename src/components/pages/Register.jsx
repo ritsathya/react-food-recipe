@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from 'axios';
 
@@ -11,6 +11,10 @@ const Register = () => {
   const [password, setPassword] = useState("");
   const [password_confirmation, setPassword_confirmation] = useState("");
 
+  useEffect(() => {
+    if(localStorage.getItem("user-token")) navigate(-1);
+  }, [])
+
   const signUp = e =>
   {
     e.preventDefault();
@@ -22,26 +26,21 @@ const Register = () => {
       {
         let email = email_or_phoneNumber;
         data = {name, email, password, password_confirmation}
-        alert(email)
       }else{
         let phone_number = email_or_phoneNumber;
         data = {name, phone_number, password, password_confirmation}
       }
-      console.log(data)
+
       axios.post("register", data)
         .then(res => {
-          console.log(res);
-          
-          if(res.data.message.includes("Duplicate")){
-            alert("Email or Phone Number is already exist in our platform!")
-          }
           localStorage.setItem("user-token", res.data.token);
         })
         .catch(err => {
-          console.log(err);
+          console.log(err)
+          if(err = 422) alert("Email or Phone Number is already exist in our platform!");
         })
         
-        // if(localStorage.getItem("user-token")) navigate(-2);
+        if(localStorage.getItem("user-token")) navigate(-2);
     }else{
       alert("Password not match!")
     }

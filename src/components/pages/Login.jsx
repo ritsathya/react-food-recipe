@@ -1,4 +1,5 @@
-import React, { useContext, useState } from 'react';
+import axios from 'axios';
+import React, { useContext, useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { UserContext } from '../../UserContext';
 import Navbar from '../Navbar';
@@ -6,58 +7,79 @@ import Navbar from '../Navbar';
 const Login = () => {
   let navigate = useNavigate();
 
+  useEffect(() => {
+    if(localStorage.getItem("user-token")) navigate(-1);
+  }, [])
+
   const { setContextUser } = useContext(UserContext);
-  const [user, setUser] = useState('');
+  const [email_or_phoneNumber, setEmail_or_phoneNumber] = useState("");
   const [password, setPassword] = useState('');
   const [isUser, setIsUser] = useState(true);
   const [isPass, setIsPass] = useState(true);
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    let data = {};
+
+    if(email_or_phoneNumber.includes("@")){
+      let email = email_or_phoneNumber;
+      data = {email, password}
+    }else{
+      let phone_number = email_or_phoneNumber;
+      data = {phone_number, password}
+    } 
+
+    axios.post("login", data)
+      .then(res => {
+        localStorage.setItem("user-token", res.data.token)
+      })
+      .catch(err => {
+        console.log(err)
+      })
 
     // e.preventDefault() doesn't work, so this is manual error trap
-    if (user === '' || password === '') {
-      alert('Please enter provide the correct crediential');
-      return;
-    }
+    // if (user === '' || password === '') {
+    //   alert('Please enter provide the correct crediential');
+    //   return;
+    // }
 
-    let fetchURL = 'https://foodie-fake-rest-api.herokuapp.com/users';
+    // let fetchURL = 'login';
 
-    fetchURL = +user
-      ? fetchURL.concat('?phone=', user)
-      : fetchURL.concat('?email=', user);
+    // fetchURL = +user
+    //   ? fetchURL.concat('?phone=', user)
+    //   : fetchURL.concat('?email=', user);
 
-    fetch(fetchURL)
-      .then((res) => {
-        return res.json();
-      })
-      .then((users) => {
-        let userFlag = false;
-        let passFlag = false;
+    // fetch(fetchURL)
+    //   .then((res) => {
+    //     return res.json();
+    //   })
+    //   .then((users) => {
+    //     let userFlag = false;
+    //     let passFlag = false;
 
-        if (users.length == 0) {
-          userFlag = false;
-          setIsUser(false);
-          return;
-        } else {
-          userFlag = true;
-          setIsUser(true);
-        }
+    //     if (users.length == 0) {
+    //       userFlag = false;
+    //       setIsUser(false);
+    //       return;
+    //     } else {
+    //       userFlag = true;
+    //       setIsUser(true);
+    //     }
 
-        if (users[0].password === password) {
-          passFlag = true;
-          setIsPass(true);
-        } else {
-          passFlag = false;
-          setIsPass(false);
-        }
+    //     if (users[0].password === password) {
+    //       passFlag = true;
+    //       setIsPass(true);
+    //     } else {
+    //       passFlag = false;
+    //       setIsPass(false);
+    //     }
 
-        if (userFlag && passFlag) {
-          setContextUser(users);
-          // Go back one page so user can continue task
-          navigate(-1);
-        }
-      });
+    //     if (userFlag && passFlag) {
+    //       setContextUser(users);
+    //       // Go back one page so user can continue task
+    //       navigate(-1);
+    //     }
+    //   });
   };
   return (
     <>
@@ -77,8 +99,8 @@ const Login = () => {
                 type='text'
                 className='form-control'
                 id='inputEmailPhone'
-                value={user}
-                onChange={(e) => setUser(e.target.value)}
+                value={email_or_phoneNumber}
+                onChange={(e) => setEmail_or_phoneNumber(e.target.value)}
               />
             </div>
             <div className='mb-2'>
