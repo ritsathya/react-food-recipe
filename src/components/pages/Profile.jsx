@@ -2,7 +2,7 @@ import React, { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { UserContext } from '../../UserContext';
 import Footer from '../Footer';
-import Navbar from '../Navbar';
+import TopNavbar from '../TopNavbar';
 import ResultRecipe from '../ResultRecipe';
 
 const Profile = () => {
@@ -23,7 +23,7 @@ const Profile = () => {
 
   return (
     <div>
-      <Navbar />
+      <TopNavbar />
 
       <div className='container mt-5'>
         <ul className='nav nav-pills mb-3' id='pills-tab' role='tablist'>

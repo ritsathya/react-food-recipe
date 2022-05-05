@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react';
 import { UserContext } from '../../UserContext';
-import Navbar from '../Navbar';
+import TopNavbar from '../TopNavbar';
 import { storage } from '../../firebase';
 import { getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage';
 import { useNavigate } from 'react-router-dom';
@@ -159,7 +159,7 @@ const Post = () => {
   };
   return (
     <>
-      <Navbar />
+      <TopNavbar />
       <div className='post'>
         <form onSubmit={handleSubmit}>
           <div className='row'>

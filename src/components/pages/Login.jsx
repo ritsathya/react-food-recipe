@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { UserContext } from '../../UserContext';
-import Navbar from '../Navbar';
+import TopNavbar from '../TopNavbar';
 
 const Login = () => {
   let navigate = useNavigate();
@@ -61,7 +61,7 @@ const Login = () => {
   };
   return (
     <>
-      <Navbar path='/login' />
+      <pNavbar path='/login' />
       <div className='login flex-center'>
         <div className='login__form'>
           <h2 className='mt-4'>Welcome!</h2>

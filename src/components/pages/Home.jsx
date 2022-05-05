@@ -2,7 +2,7 @@ import React from "react";
 import SearchForm from "../SearchForm";
 import FoodCard from "../FoodCard";
 import Footer from "../Footer";
-import Navbar from "../Navbar";
+import TopNavbar from "../TopNavbar";
 
 const Home = ({ recipe }) => {
   const recipes = recipe;
@@ -18,7 +18,7 @@ const Home = ({ recipe }) => {
 
   return (
     <>
-      <Navbar path="/" />
+      <TopNavbar path="/" />
       <SearchForm />
       <FoodCard
         icon={<i className="fa-solid fa-bacon" />}

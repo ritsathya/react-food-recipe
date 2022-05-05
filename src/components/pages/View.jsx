@@ -3,7 +3,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { Modal, Button, Form } from 'react-bootstrap';
 
 import { deleteFromFavoriteList } from '../../utility';
-import Navbar from '../Navbar';
+import TopNavbar from '../TopNavbar';
 import GetRecommend from '../GetRecommend';
 import Footer from '../Footer';
 import { UserContext } from '../../UserContext';
@@ -309,7 +309,7 @@ const View = ({ data, user }) => {
 
   return (
     <>
-      <Navbar path='/view' />
+      <TopNavbar path='/view' />
       <div style={{ backgroundColor: '#f6f7f6' }}>
         <div className='flex jc-end fa-2x'>
           <i

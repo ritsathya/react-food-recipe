@@ -1,81 +1,126 @@
-import React from "react";
+import React, { useState } from "react";
+import { Form, Button, FormCheck } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import Navbar from "../Navbar";
+import TopNavbar from "../TopNavbar";
+
+
 
 const Register = () => {
-  return (
-    <>
-      <div>
-        <Navbar path="/login" />
+  const [ form, setForm ] = useState({})
+  const [ errors, setErrors ] = useState({})
 
-        <div className="login flex-center">
-          <div className="login__form">
-            <h3 className="mt-4">Create an Account</h3>
-            <form className="m-4 mt-3">
-              <div className="mb-3">
-                <label htmlFor="inputEmailPhone" className="form-label">
-                  EMAIL OR PHONE NUMBER <font style={{ color: "red" }}>*</font>
-                </label>
-                <input
-                  type="text"
-                  className="form-control"
-                  id="inputEmailPhone"
-                />
-              </div>
-              <div className="mb-2">
-                <label htmlFor="inputUsername" className="form-label">
-                  USERNAME <font style={{ color: "red" }}>*</font>
-                </label>
-                <input
-                  type="text"
-                  className="form-control"
-                  id="inputUsername"
-                />
-              </div>
-              <div className="mb-2">
-                <label htmlFor="inputPassword" className="form-label">
-                  PASSWORD <font style={{ color: "red" }}>*</font>
-                </label>
-                <input
-                  type="password"
-                  className="form-control"
-                  id="inputPassword"
-                />
-              </div>
-              <div className="mb-2">
-                <label htmlFor="inputConfirmPassword" className="form-label">
-                  CONFIRM PASSWORD <font style={{ color: "red" }}>*</font>
-                </label>
-                <input
-                  type="password"
-                  className="form-control"
-                  id="inputConfirmPassword"
-                />
-              </div>
-              <div className="btn-section">
-                <button type="submit" className="btn col-12 mt-2 mb-2">
-                  Register
-                </button>
-                <span>Already have an account?</span>
-                <Link to="/login">Login</Link>
-                <div className="row line-or-line g-0 mt-3">
-                  <div className="line col-5"></div>
-                  <div className="col-2 text-center">OR</div>
-                  <div className="line col-5"></div>
-                </div>
-                <button
-                  type="submit"
-                  className="btn col-12 mt-3 flex jc-center"
-                >
-                  <i className="fa-brands fa-facebook-square" />
-                  <small className="mx-2">Sign up with Facebook</small>
-                </button>
-              </div>
-            </form>
-          </div>
+  const setField = (field, value) => {
+    setForm({
+      ...form,
+      [field]: value
+    })
+
+    if ( !!errors[field] ) setErrors({
+      ...errors,
+      [field]: null
+    })
+  }
+
+  const findFormErrors = () => {
+    const { username, email, password, confirm } = form
+    const newErrors = {}
+
+    // name errors
+    if ( !username || username === '' ) newErrors.username = 'cannot be blank!'
+    else if ( username.length > 30 ) newErrors.username = 'name is too long!'
+
+    // email errors
+    if ( !email || email === '' ) newErrors.email = 'cannot be blank!'
+     
+    // password errors
+    if ( !password || password.length < 8 ) newErrors.password = 'enter atleast 8 characters password!'
+
+    // confirm errors
+    if ( !confirm || confirm !== password ) newErrors.confirm = 'password does not match!'
+
+    return newErrors
+  }
+
+  const handleSubmit = e => {
+    e.preventDefault()
+
+    // get new errors
+    const newErrors = findFormErrors()
+    if ( Object.keys(newErrors).length > 0 ) {
+      // We got errors
+      setErrors(newErrors)
+    } else {
+      alert('Thank you!')
+    }
+  }
+
+  return (
+    <div>
+      <TopNavbar/>
+
+      <div className="login flex-center">
+        <div className="login__form">
+          <h3 className="mt-4">Create an Account</h3>
+          <Form onSubmit={ e => handleSubmit(e) }>
+            <Form.Group className="m-4 mt-3" controlId="formBasicUser">
+              <Form.Label>Username</Form.Label>
+              <Form.Control 
+                type='text' 
+                onChange={ e => setField('username', e.target.value) }
+                isInvalid={ !!errors.username }
+                placeholder='Chose Username' 
+              />
+              <Form.Control.Feedback type='invalid'>
+                { errors.username }
+              </Form.Control.Feedback>
+            </Form.Group>
+            <Form.Group className="m-4 mt-3" controlId="formBasicEmail">
+              <Form.Label>Email or Phone Number</Form.Label>
+              <Form.Control 
+                type="email" 
+                onChange={ e => setField('email', e.target.value) }
+                isInvalid={ !!errors.email }
+                placeholder="example@domain.com"
+              />
+              <Form.Control.Feedback type='invalid'>
+                { errors.email }
+              </Form.Control.Feedback>
+            </Form.Group>
+            
+            <Form.Group className="m-4 mt-3" controlId="formBasicPassword">
+              <Form.Label>Password</Form.Label>
+              <Form.Control 
+                type="password" 
+                onChange={ e => setField('password', e.target.value) }
+                isInvalid={ !!errors.password }
+                placeholder="Password" 
+              />
+              <Form.Control.Feedback type='invalid'>
+                { errors.password }
+              </Form.Control.Feedback>
+            </Form.Group>
+            <Form.Group className="m-4 mt-3" controlId="formBasicConfirmation">
+              <Form.Label>Password Again</Form.Label>
+              <Form.Control 
+                type="password" 
+                onChange={ e => setField('confirm', e.target.value) }
+                isInvalid={ !!errors.confirm }
+                placeholder="Password Again" 
+              />
+              <Form.Control.Feedback type='invalid'>
+              { errors.confirm }
+            </Form.Control.Feedback>
+            </Form.Group>
+
+            <div className="col-md-12 text-center my-3 p-4">
+              <Button variant="primary" type="submit" className="w-100">
+                Register
+              </Button>
+            </div>
+          </Form>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 
