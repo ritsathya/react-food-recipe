@@ -1,9 +1,6 @@
 import React, { useState } from "react";
-import { Form, Button, FormCheck } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Form, Button } from "react-bootstrap";
 import TopNavbar from "../TopNavbar";
-
-
 
 const Register = () => {
   const [ form, setForm ] = useState({})

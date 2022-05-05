@@ -23,7 +23,7 @@ const TopNavbar = (props) => {
           <NavDropdown title="Category" id="nav-category-dropdown">
             <NavDropdown.Item>Breakfast</NavDropdown.Item>
           </NavDropdown>
-          <Nav.Link as={Link} to="#login">Login</Nav.Link>
+          <Nav.Link as={Link} to="/login">Login</Nav.Link>
           <Nav.Link as={Link} to="/register">Register</Nav.Link>
         </Nav>
       </Container>
