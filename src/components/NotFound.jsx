@@ -1,11 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import Navbar from "./Navbar";
+import TopNavbar from "./TopNavbar";
 
 const NotFound = () => {
   return (
     <div>
-      <Navbar />
+      <TopNavbar />
       <div className="not-found-container">
         <div className="not-found-icon">
           <i className="fa-solid fa-circle-exclamation" />

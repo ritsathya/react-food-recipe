@@ -9,7 +9,7 @@ import { UserContext } from '../../UserContext';
 
 import { deleteFromFavoriteList } from '../../utility';
 import CardItem from '../CardItem';
-import Navbar from '../Navbar';
+import TopNavbar from '../TopNavbar';
 import NotFound from '../NotFound';
 
 export default function FavRecipeList({ recipes }) {
@@ -72,7 +72,7 @@ export default function FavRecipeList({ recipes }) {
   return (
     <>
       <div className={lists ? '' : 'd-none'}>
-        <Navbar path='/favRecipeList' />
+        <TopNavbar path='/favRecipeList' />
       </div>
       {lists ? (
         <div className='favorite_recipe_list grid'>{checkList()}</div>

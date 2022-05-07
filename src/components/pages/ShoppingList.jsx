@@ -2,7 +2,7 @@ import React from 'react';
 
 import CardItem from '../CardItem';
 import Footer from '../Footer';
-import Navbar from '../Navbar';
+import TopNavbar from '../TopNavbar';
 
 export default function ShoppingList({ recipe }) {
   const url = window.location.href;
@@ -12,7 +12,7 @@ export default function ShoppingList({ recipe }) {
 
   return (
     <>
-      <Navbar path='/shopping' />
+      <TopNavbar path='/shopping' />
       <div className='shopping-list-page flex jc-center'>
         <div className='shopping-list-contaienr'>
           <h2>

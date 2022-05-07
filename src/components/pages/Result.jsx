@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import Footer from '../Footer';
-import Navbar from '../Navbar';
+import TopNavbar from '../TopNavbar';
 import ResultRecipe from '../ResultRecipe';
 
 const Result = () => {
@@ -71,7 +71,7 @@ const Result = () => {
 
   return (
     <>
-      <Navbar />
+      <TopNavbar />
       <h2>Find a recipe</h2>
       <div className='input-group wrapper'>
         <input
