@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import TopNavbar from '../TopNavbar';
 import { Form, Button } from "react-bootstrap";
+import { Link } from 'react-router-dom';
 
 const Login = () => {
   const [ form, setForm ] = useState({})
@@ -65,7 +66,7 @@ const Login = () => {
               </Form.Control.Feedback>
             </Form.Group>
             
-            <Form.Group className="m-4 mt-3" controlId="formBasicPassword">
+            <Form.Group className="mx-4 mt-3" controlId="formBasicPassword">
               <Form.Label>Password</Form.Label>
               <Form.Control 
                 type="password" 
@@ -77,6 +78,7 @@ const Login = () => {
                 { errors.password }
               </Form.Control.Feedback>
             </Form.Group>
+            <Link to='#forgetPassword' className='mx-4'>Forget Password?</Link>
 
             <div className="col-md-12 text-center my-3 p-4">
               <Button variant="primary" type="submit" className="w-100">
@@ -84,6 +86,8 @@ const Login = () => {
               </Button>
             </div>
           </Form>
+
+          <Link to='/register' className='mx-4'>Register an Account</Link>
         </div>
       </div>
     </>
